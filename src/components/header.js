@@ -1,6 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styled from 'styled-components'
+import store from '../library/store'
 import {
   Collapse,
   Navbar,
@@ -46,7 +47,7 @@ export default class Example extends React.Component {
                 <NavLink href="">Subscriptions</NavLink>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>
+                <DropdownToggle nav>
                   <FontAwesomeIcon icon="user" />
                 </DropdownToggle>
                 <DropdownMenu right>

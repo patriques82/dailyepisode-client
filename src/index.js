@@ -3,5 +3,21 @@ import ReactDOM from 'react-dom';
 import App from './components/app';
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();
+import { Provider } from 'react-redux'
+import store from './library/store'
+import { actions } from './ducks/authentication'
+
+
+setTimeout(function () {
+  store.dispatch(actions.fetchUser({username: "patrik", password: "kirtap"}))
+}, 1500);
+
+ReactDOM.render(
+  (
+    <Provider store={store}>
+      <App/>
+    </Provider>
+  ),
+  document.getElementById('root')
+)
+registerServiceWorker()

@@ -1,3 +1,4 @@
+// Styling
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { 
@@ -6,12 +7,14 @@ import {
   faUser,
   faTv
 } from '@fortawesome/free-solid-svg-icons'
-import { 
-} from '@fortawesome/free-regular-svg-icons'
 
+// Components
 import React, { Component } from 'react'
 import Header from './header'
 import Search from './search'
+import Login from './login/logincontainer'
+
+// Routing
 import { 
   BrowserRouter as Router,
   Link } from 'react-router-dom'
@@ -23,7 +26,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <Search />
+        <Login />
       </div>
     )
   }
