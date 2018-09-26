@@ -1,0 +1,1 @@
+Client for 'Daily Episode' REST-api
