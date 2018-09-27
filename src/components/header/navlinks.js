@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Link } from 'react-router-dom'
 import {
   Nav,
   NavItem,
@@ -14,7 +15,7 @@ class LoggedInLinks extends Component {
     return (
       <Nav className="ml-auto" navbar>
         <NavItem>
-          <NavLink href="">Search</NavLink>
+          <NavLink tag={Link} to="/search">Search</NavLink>
         </NavItem>
         <NavItem>
           <NavLink href="">Subscriptions</NavLink>
@@ -43,10 +44,10 @@ class LoggedOutLinks extends Component {
     return (
       <Nav className="ml-auto" navbar>
         <NavItem>
-          <NavLink href="">Search</NavLink>
+          <NavLink tag={Link} to="/search">Search</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink href="">Login</NavLink>
+          <NavLink tag={Link} to="/login">Login</NavLink>
         </NavItem>
       </Nav>
     )

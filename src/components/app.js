@@ -15,7 +15,7 @@ import Search from './search'
 import Login from './login/logincontainer'
 import { 
   BrowserRouter as Router,
-  Link } from 'react-router-dom'
+  Route } from 'react-router-dom'
 
 library.add(faCheckCircle, faSearch, faTv, faUser)
 
@@ -23,8 +23,14 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header />
-        <Login />
+        <Router>
+          <div>
+            <Header />
+            <Route exact path="/" />
+            <Route path="/login" component={Login} />
+            <Route path="/search" component={Search} />
+          </div>
+        </Router>
       </div>
     )
   }
