@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
 import store from '../library/store'
+import { 
+  BrowserRouter as Router,
+  Route } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { 
@@ -9,9 +12,6 @@ import {
   faUser,
   faTv
 } from '@fortawesome/free-solid-svg-icons'
-import { 
-  BrowserRouter as Router,
-  Route } from 'react-router-dom'
 import Header from './header/headercontainer'
 import Search from './search'
 import Login from './login/logincontainer'

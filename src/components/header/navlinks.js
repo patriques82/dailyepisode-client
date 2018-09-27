@@ -8,50 +8,47 @@ import {
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem } from 'reactstrap';
+  DropdownItem 
+} from 'reactstrap'
 
-class LoggedInLinks extends Component {
-  render() {
-    return (
-      <Nav className="ml-auto" navbar>
-        <NavItem>
-          <NavLink tag={Link} to="/search">Search</NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink href="">Subscriptions</NavLink>
-        </NavItem>
-        <UncontrolledDropdown nav inNavbar>
-          <DropdownToggle nav>
-            <FontAwesomeIcon icon="user" />
-          </DropdownToggle>
-          <DropdownMenu right>
-            <DropdownItem>
-              Settings
-            </DropdownItem>
-            <DropdownItem divider />
-            <DropdownItem>
-              Logout 
-            </DropdownItem>
-          </DropdownMenu>
-        </UncontrolledDropdown>
-      </Nav>
-    )
-  }
+const LoggedInLinks = (props) => {
+  return (
+    <Nav className="ml-auto" navbar>
+      <NavItem>
+        <NavLink tag={Link} to="/search">Search</NavLink>
+      </NavItem>
+      <NavItem>
+        <NavLink tag={Link} to="/search">Subscriptions</NavLink>
+      </NavItem>
+      <UncontrolledDropdown nav inNavbar>
+        <DropdownToggle nav>
+          <FontAwesomeIcon icon="user" />
+        </DropdownToggle>
+        <DropdownMenu right>
+          <DropdownItem>
+            Settings
+          </DropdownItem>
+          <DropdownItem divider />
+          <DropdownItem onClick={props.logout}>
+            Logout 
+          </DropdownItem>
+        </DropdownMenu>
+      </UncontrolledDropdown>
+    </Nav>
+  )
 }
 
-class LoggedOutLinks extends Component {
-  render() {
-    return (
-      <Nav className="ml-auto" navbar>
-        <NavItem>
-          <NavLink tag={Link} to="/search">Search</NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink tag={Link} to="/login">Login</NavLink>
-        </NavItem>
-      </Nav>
-    )
-  }
+const LoggedOutLinks = (props) => {
+  return (
+    <Nav className="ml-auto" navbar>
+      <NavItem>
+        <NavLink tag={Link} to="/search">Search</NavLink>
+      </NavItem>
+      <NavItem>
+        <NavLink tag={Link} to="/login">Login</NavLink>
+      </NavItem>
+    </Nav>
+  )
 }
 
 export { LoggedInLinks, LoggedOutLinks }

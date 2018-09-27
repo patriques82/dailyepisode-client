@@ -118,9 +118,9 @@ class Search extends Component {
             </InputGroup>
           </SearchInputWrapper>
         </SearchInputContainer>
-          <SearchResult />
-          <SearchResult />
-          <SearchResult />
+        <SearchResult />
+        <SearchResult />
+        <SearchResult />
       </SearchPage>
     )
   }

@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Link } from 'react-router-dom'
 import {
   Collapse,
   Navbar,
   NavbarToggler,
   NavbarBrand
 } from 'reactstrap'
-import { LoggedInLinks, LoggedOutLinks } from './navlinks';
+import { LoggedInLinks, LoggedOutLinks } from './navlinks'
 
 class Header extends Component {
   constructor(props) {
@@ -25,13 +26,13 @@ class Header extends Component {
     return (
       <div>
         <Navbar color="light" light expand="md">
-          <NavbarBrand href="/">
+          <NavbarBrand tag={Link} to="/search">
             <FontAwesomeIcon icon="tv"/>
             <span> Dailyepisode</span>
           </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
-            { this.props.authenticated ? <LoggedInLinks /> : <LoggedOutLinks /> } 
+            { this.props.authenticated ? <LoggedInLinks logout={this.props.logout} /> : <LoggedOutLinks /> } 
           </Collapse>
         </Navbar>
       </div>

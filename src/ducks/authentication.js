@@ -4,6 +4,7 @@ export const types = {
   FETCH_USER_REQUEST: 'FETCH_USER_REQUEST',
   FETCH_USER_SUCCESS: 'FETCH_USER_SUCCESS',
   FETCH_USER_FAILURE: 'FETCH_USER_FAILURE',
+  REMOVE_USER_DETAILS: 'REMOVE_USER_DETAILS',
 }
 
 const DEFAULT_STATE = {
@@ -35,13 +36,20 @@ export function reducer(state = DEFAULT_STATE, action) {
         loading: false,
         error: action.payload,
       }
+    case types.REMOVE_USER_DETAILS:
+      return {
+        ...state,
+        data: {},
+        password: null,
+        authenticated: false,
+      }
     default:
       return state
   }
 }
 
 export const actions = {
-  fetchUser({ username, password }) {
+  login({ username, password }) {
     return function (dispatch, getState) {
       dispatch({
         type: types.FETCH_USER_REQUEST,
@@ -64,4 +72,9 @@ export const actions = {
       })
     }
   },
+  logout() {
+    return {
+      type: types.REMOVE_USER_DETAILS,
+    }
+  }
 }

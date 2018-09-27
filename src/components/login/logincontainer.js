@@ -5,10 +5,10 @@ import Login from './login'
 
 const mapStateToProps = (state) => ({
   loading: state.authentication.loading,
-});
+})
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchUser: (userdata) => dispatch(authenticationActions.fetchUser(userdata)),
-});
+  fetchUser: (userdata) => dispatch(authenticationActions.login(userdata)),
+})
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login))
