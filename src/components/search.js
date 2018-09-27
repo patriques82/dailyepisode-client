@@ -10,32 +10,32 @@ import {
   Input, 
   Media,
   Progress,
-  Row } from 'reactstrap';
+  Row } from 'reactstrap'
 
 const SearchPage = styled.div`
 
-`;
+`
 
 const SearchInputWrapper = styled.div`
   width: 35%;
   margin: auto;
-`;
+`
 
 const SearchInputContainer = styled.div`
   padding: 50px 0;
-`;
+`
 
 const SearchResultContainer = styled.div`
   margin: 30px 0;
-`;
+`
 
 const SubscriptionButtonContainer = styled.div`
   margin-bottom: 16px;
-`;
+`
 
 const SubscribeTextSpan = styled.span`
   padding-right: 5px;
-`;
+`
 
 class SubscriptionButton extends Component {
   constructor(props) {

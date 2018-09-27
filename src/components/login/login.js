@@ -10,16 +10,16 @@ import {
 
 const LoginPage = styled.div`
   margin-top: 50px;
-`;
+`
 
 const ButtonContainer = styled.div`
   float: right;
-`;
+`
 
 const DEFAULT_STATE = {
   username: '',
   password: '',
-};
+}
 
 class Login extends Component {
   state = {
