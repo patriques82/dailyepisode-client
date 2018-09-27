@@ -1,16 +1,9 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './components/app';
-import registerServiceWorker from './registerServiceWorker';
-
+import React from 'react'
+import ReactDOM from 'react-dom'
+import registerServiceWorker from './registerServiceWorker'
 import { Provider } from 'react-redux'
 import store from './library/store'
-import { actions } from './ducks/authentication'
-
-
-setTimeout(function () {
-  store.dispatch(actions.fetchUser({username: "patrik", password: "kirtap"}))
-}, 1500);
+import App from './components/app'
 
 ReactDOM.render(
   (

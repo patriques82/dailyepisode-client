@@ -10,11 +10,9 @@ import {
 
 // Components
 import React, { Component } from 'react'
-import Header from './header'
+import Header from './header/headercontainer'
 import Search from './search'
 import Login from './login/logincontainer'
-
-// Routing
 import { 
   BrowserRouter as Router,
   Link } from 'react-router-dom'
