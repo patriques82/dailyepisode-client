@@ -1,11 +1,10 @@
-import axios from 'axios';
-import { Base64 } from 'js-base64'
+import api from '../library/api'
 
 export const types = {
   FETCH_USER_REQUEST: 'FETCH_USER_REQUEST',
   FETCH_USER_SUCCESS: 'FETCH_USER_SUCCESS',
   FETCH_USER_FAILURE: 'FETCH_USER_FAILURE',
-};
+}
 
 const DEFAULT_STATE = {
   loading: false,
@@ -13,7 +12,7 @@ const DEFAULT_STATE = {
   error: null,
   password: null,
   authenticated: false,
-};
+}
 
 export function reducer(state = DEFAULT_STATE, action) {
   switch (action.type) {
@@ -21,7 +20,7 @@ export function reducer(state = DEFAULT_STATE, action) {
       return {
         ...state,
         loading: true,
-      };
+      }
     case types.FETCH_USER_SUCCESS:
       return {
         ...state,
@@ -29,15 +28,15 @@ export function reducer(state = DEFAULT_STATE, action) {
         data: action.payload.data,
         password: action.payload.password,
         authenticated: true,
-      };
+      }
     case types.FETCH_USER_FAILURE:
       return {
         ...state,
         loading: false,
         error: action.payload,
-      };
+      }
     default:
-      return state;
+      return state
   }
 }
 
@@ -46,11 +45,8 @@ export const actions = {
     return function (dispatch, getState) {
       dispatch({
         type: types.FETCH_USER_REQUEST,
-      });
-      const basicToken = "Basic " + Base64.encode(username + ":" + password) 
-      return axios.get('http://localhost:8080/api/user/me', {
-        headers: { 'Authorization' : basicToken }
       })
+      api.getUser(username, password)
       .then(function (response) {
         dispatch({
           type: types.FETCH_USER_SUCCESS,
@@ -58,14 +54,14 @@ export const actions = {
             data: response.data,
             password,
           }
-        });
+        })
       })
       .catch(err => {
         dispatch({
           type: types.FETCH_USER_FAILURE,
           payload: err.message,
-        });
-      });
-    };
+        })
+      })
+    }
   },
-};
+}
