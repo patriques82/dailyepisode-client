@@ -6,7 +6,7 @@ import {
   Form, 
   FormGroup, 
   Input, 
-  Row } from 'reactstrap';
+  Row } from 'reactstrap'
 
 const LoginPage = styled.div`
   margin-top: 50px;
@@ -27,9 +27,9 @@ class Login extends Component {
   }
   handleFormSubmit = (e) => {
     e.preventDefault()
-    console.log(this.state)
     this.props.fetchUser(this.state);
     this.setState(DEFAULT_STATE);
+    this.props.history.push('/search')
   }
   render() {
     return (

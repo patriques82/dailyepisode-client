@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 import { actions as authenticationActions } from '../../ducks/authentication'
+import { withRouter } from "react-router-dom"
 import Login from './login'
 
 const mapStateToProps = (state) => ({
@@ -10,4 +11,4 @@ const mapDispatchToProps = (dispatch) => ({
   fetchUser: (userdata) => dispatch(authenticationActions.fetchUser(userdata)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login))
