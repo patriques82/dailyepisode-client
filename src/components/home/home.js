@@ -1,4 +1,6 @@
+import './home.css'
 import React from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Jumbotron, Container } from 'reactstrap'
 
 const Home = (props) => {
@@ -6,12 +8,21 @@ const Home = (props) => {
     <div>
       <Jumbotron header className="text-center">
         <Container>
+          <FontAwesomeIcon icon="tv" className="tv-main-icon"/>
           <h1 className="display-3">Dailyepisode</h1>
           <p className="lead">
             Keep track of all your tv shows.
           </p>
         </Container>
       </Jumbotron>
+        <div class="progressbar-container">
+          <ul class="progressbar">
+            <li>Login</li>
+            <li>Search tv-shows</li>
+            <li>Subscribe</li>
+            <li>Get notifications</li>
+          </ul>
+        </div>
     </div>
   )
 }
