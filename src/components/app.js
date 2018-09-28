@@ -13,7 +13,8 @@ import {
   faTv
 } from '@fortawesome/free-solid-svg-icons'
 import Header from './header/headercontainer'
-import Search from './search'
+import Home from './home/home'
+import Search from './search/search'
 import Login from './login/logincontainer'
 
 library.add(faCheckCircle, faSearch, faTv, faUser)
@@ -25,7 +26,7 @@ class App extends Component {
         <Router>
           <div>
             <Header />
-            <Route exact path="/" />
+            <Route exact path="/" component={Home} />
             <Route path="/login" component={Login} />
             <Route path="/search" component={Search} />
           </div>

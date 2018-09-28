@@ -1,5 +1,5 @@
+import './login.css'
 import React, { Component } from 'react'
-import styled from 'styled-components'
 import { 
   Button,
   Col, 
@@ -7,14 +7,6 @@ import {
   FormGroup, 
   Input, 
   Row } from 'reactstrap'
-
-const LoginPage = styled.div`
-  margin-top: 50px;
-`
-
-const ButtonContainer = styled.div`
-  float: right;
-`
 
 const DEFAULT_STATE = {
   username: '',
@@ -33,7 +25,7 @@ class Login extends Component {
   }
   render() {
     return (
-      <LoginPage>
+      <div className="login-page">
         <Row>
           <Col xs="6" sm="4"></Col>
           <Col xs="6" sm="4">
@@ -52,16 +44,16 @@ class Login extends Component {
                        onChange={ e => this.setState({ password: e.target.value }) }
                        value={this.state.password} />
               </FormGroup>
-              <ButtonContainer>
+              <div className="button-container">
                 <Button outline color="secondary" type="submit">
                   Login
                 </Button>
-              </ButtonContainer>
+              </div>
             </Form>
           </Col>
           <Col sm="4"></Col>
         </Row>
-      </LoginPage>
+      </div>
     )
   }
 }

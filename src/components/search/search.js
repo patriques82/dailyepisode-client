@@ -1,6 +1,6 @@
+import './search.css'
 import React, { Component } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import styled from 'styled-components'
 import { 
   Container,
   Col, 
@@ -11,31 +11,6 @@ import {
   Media,
   Progress,
   Row } from 'reactstrap'
-
-const SearchPage = styled.div`
-
-`
-
-const SearchInputWrapper = styled.div`
-  width: 35%;
-  margin: auto;
-`
-
-const SearchInputContainer = styled.div`
-  padding: 50px 0;
-`
-
-const SearchResultContainer = styled.div`
-  margin: 30px 0;
-`
-
-const SubscriptionButtonContainer = styled.div`
-  margin-bottom: 16px;
-`
-
-const SubscribeTextSpan = styled.span`
-  padding-right: 5px;
-`
 
 class SubscriptionButton extends Component {
   constructor(props) {
@@ -52,12 +27,12 @@ class SubscriptionButton extends Component {
   }
   render() {
     return (
-      <SubscriptionButtonContainer 
+      <div className="subscription-button-container" 
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave} >
-        <SubscribeTextSpan>{this.state.active ? 'Subscribe' : 'OFF'}</SubscribeTextSpan>
+        <span className="subscribe-text-span">{this.state.active ? 'Subscribe' : 'OFF'}</span>
         <FontAwesomeIcon icon="check-circle" />
-      </SubscriptionButtonContainer>
+      </div>
     )
   }
 }
@@ -65,7 +40,7 @@ class SubscriptionButton extends Component {
 class SearchResult extends Component {
   render() {
     return (
-      <SearchResultContainer>
+      <div className="search-result-container">
         <Container>
           <Row>
             <Col xs="2">
@@ -97,7 +72,7 @@ class SearchResult extends Component {
             </Col>
           </Row>
         </Container>
-      </SearchResultContainer>
+      </div>
     )
   }
 }
@@ -105,9 +80,9 @@ class SearchResult extends Component {
 class Search extends Component {
   render() {
     return (
-      <SearchPage>
-        <SearchInputContainer>
-          <SearchInputWrapper>
+      <div className="search-page">
+        <div className="search-input-container">
+          <div className="search-input-wrapper">
             <InputGroup>
               <Input placeholder="Search..."/>
               <InputGroupAddon addonType="append">
@@ -116,12 +91,12 @@ class Search extends Component {
                 </InputGroupText>
               </InputGroupAddon>
             </InputGroup>
-          </SearchInputWrapper>
-        </SearchInputContainer>
+          </div>
+        </div>
         <SearchResult />
         <SearchResult />
         <SearchResult />
-      </SearchPage>
+      </div>
     )
   }
 }

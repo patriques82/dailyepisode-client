@@ -26,7 +26,7 @@ class Header extends Component {
     return (
       <div>
         <Navbar color="light" light expand="md">
-          <NavbarBrand tag={Link} to="/search">
+          <NavbarBrand tag={Link} to="/">
             <FontAwesomeIcon icon="tv"/>
             <span> Dailyepisode</span>
           </NavbarBrand>
