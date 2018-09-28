@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
-import store from '../library/store'
+import { PersistGate } from 'redux-persist/lib/integration/react'
+import storeConfig from '../library/store'
 import { 
   BrowserRouter as Router,
   Route } from 'react-router-dom'
@@ -17,20 +18,23 @@ import Home from './home/home'
 import Search from './search/search'
 import Login from './login/logincontainer'
 
+const { store, persistor } = storeConfig()
 library.add(faCheckCircle, faSearch, faTv, faUser)
 
 class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Router>
-          <div>
-            <Header />
-            <Route exact path="/" component={Home} />
-            <Route path="/login" component={Login} />
-            <Route path="/search" component={Search} />
-          </div>
-        </Router>
+        <PersistGate persistor={persistor}>
+          <Router>
+            <div>
+              <Header />
+              <Route exact path="/" component={Home} />
+              <Route path="/login" component={Login} />
+              <Route path="/search" component={Search} />
+            </div>
+          </Router>
+        </PersistGate>
       </Provider>
     )
   }
