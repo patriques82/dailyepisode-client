@@ -1,13 +1,13 @@
 import { connect } from 'react-redux'
 import Header from './header'
-import { actions as authenticationActions } from '../../ducks/authentication'
+import { actions as userActions } from '../../ducks/user'
 
 const mapStateToProps = (state) => ({
-  authenticated: state.authentication.authenticated,
+  authenticated: state.user.authenticated,
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  logout: () => dispatch(authenticationActions.logout()),
+  logout: () => dispatch(userActions.logout()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header)
