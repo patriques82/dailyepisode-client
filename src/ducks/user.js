@@ -11,7 +11,6 @@ const DEFAULT_STATE = {
   loading: false,
   data: {},
   error: null,
-  password: null,
   authenticated: false,
 }
 
@@ -26,8 +25,10 @@ export function reducer(state = DEFAULT_STATE, action) {
       return {
         ...state,
         loading: false,
-        data: action.payload.data,
-        password: action.payload.password,
+        data: {
+          ...action.payload.data,
+          password: action.payload.password,
+        },
         authenticated: true,
       }
     case types.FETCH_USER_FAILURE:
@@ -40,7 +41,6 @@ export function reducer(state = DEFAULT_STATE, action) {
       return {
         ...state,
         data: {},
-        password: null,
         authenticated: false,
       }
     default:
