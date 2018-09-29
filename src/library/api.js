@@ -9,5 +9,16 @@ export default {
     return axios.get(hostName + '/api/user/me', {
       headers: { 'Authorization' : basicToken }
     })
+  },
+  updateUser: (accountId, username, newUsername, notificationIntervalInDays, password) => {
+    const basicToken = "Basic " + Base64.encode(username + ":" + password) 
+    const data = {
+      accountId,
+      username: newUsername,
+      notificationIntervalInDays,
+    }
+    return axios.put(hostName + '/api/user/update', data, {
+      headers: { 'Authorization': basicToken },
+    })
   }
 }

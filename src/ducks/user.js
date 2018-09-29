@@ -5,6 +5,9 @@ export const types = {
   FETCH_USER_SUCCESS: 'FETCH_USER_SUCCESS',
   FETCH_USER_FAILURE: 'FETCH_USER_FAILURE',
   REMOVE_USER_DETAILS: 'REMOVE_USER_DETAILS',
+  UPDATE_USER_REQUEST: 'UPDATE_USER_REQUEST',
+  UPDATE_USER_SUCCESS: 'UPDATE_USER_SUCCESS',
+  UPDATE_USER_FAILURE: 'UPDATE_USER_FAILURE',
 }
 
 const DEFAULT_STATE = {
@@ -43,6 +46,21 @@ export function reducer(state = DEFAULT_STATE, action) {
         data: {},
         authenticated: false,
       }
+    case types.UPDATE_USER_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      }
+    case types.UPDATE_USER_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        data: {
+          ...state.data,
+          username: action.payload.username,
+          notificationIntervalInDays: action.payload.notificationIntervalInDays,
+        },
+      }
     default:
       return state
   }
@@ -55,7 +73,7 @@ export const actions = {
         type: types.FETCH_USER_REQUEST,
       })
       api.getUser(username, password)
-      .then(function (response) {
+      .then(response => {
         dispatch({
           type: types.FETCH_USER_SUCCESS,
           payload: {
@@ -70,6 +88,29 @@ export const actions = {
           payload: err.message,
         })
       })
+    }
+  },
+  update({ id, username, newUsername, notificationIntervalInDays, password }) {
+    return function (dispatch, getState) {
+      dispatch({
+        type: types.UPDATE_USER_REQUEST,
+      })
+      api.updateUser(id, username, newUsername, notificationIntervalInDays, password)
+      .then(response => {
+        dispatch({
+          type: types.UPDATE_USER_SUCCESS,
+          payload: {
+            username: newUsername,
+            notificationIntervalInDays,
+          }
+        })
+      })
+      .catch(err => {
+        dispatch({
+          type: types.UPDATE_USER_FAILURE,
+          payload: err.message,
+        })
+      })    
     }
   },
   logout() {

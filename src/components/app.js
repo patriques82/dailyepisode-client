@@ -17,6 +17,7 @@ import Header from './header/headercontainer'
 import Home from './home/home'
 import Search from './search/search'
 import Login from './login/logincontainer'
+import Profile from './profile/profilecontainer'
 
 const { store, persistor } = storeConfig()
 library.add(faCheckCircle, faSearch, faTv, faUser)
@@ -32,6 +33,7 @@ class App extends Component {
               <Route exact path="/" component={Home} />
               <Route path="/login" component={Login} />
               <Route path="/search" component={Search} />
+              <Route path="/profile" component={Profile} />
             </div>
           </Router>
         </PersistGate>

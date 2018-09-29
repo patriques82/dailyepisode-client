@@ -25,8 +25,11 @@ const LoggedInLinks = (props) => {
           <FontAwesomeIcon icon="user" />
         </DropdownToggle>
         <DropdownMenu right>
-          <DropdownItem>
+          <DropdownItem tag={Link} to="/profile">
             Settings
+          </DropdownItem>
+          <DropdownItem>
+            Change password
           </DropdownItem>
           <DropdownItem divider />
           <DropdownItem onClick={props.logout}>
