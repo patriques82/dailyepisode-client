@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
 import { 
   Col, 
   Button, 
@@ -22,6 +23,9 @@ class Profile extends Component {
     this.props.updateUser(this.state);
   }
   render() {
+    if (!this.props.authenticated) {
+      return <Redirect to="/login" />;
+    }
     return (
       <div className="login-page">
         <Row>

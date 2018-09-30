@@ -20,5 +20,15 @@ export default {
     return axios.put(hostName + '/api/user/update', data, {
       headers: { 'Authorization': basicToken },
     })
+  },
+  updatePassword: (accountId, username, password, newPassword) => {
+    const basicToken = "Basic " + Base64.encode(username + ":" + password) 
+    const data = {
+      accountId,
+      newPassword,
+    }
+    return axios.put(hostName + '/api/user/change-password', data, {
+      headers: { 'Authorization': basicToken },
+    })
   }
 }

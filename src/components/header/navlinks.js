@@ -26,9 +26,9 @@ const LoggedInLinks = (props) => {
         </DropdownToggle>
         <DropdownMenu right>
           <DropdownItem tag={Link} to="/profile">
-            Settings
+            Profile
           </DropdownItem>
-          <DropdownItem>
+          <DropdownItem tag={Link} to="/change-password">
             Change password
           </DropdownItem>
           <DropdownItem divider />

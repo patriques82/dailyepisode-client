@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { actions as userActions } from '../../ducks/user'
 import { withRouter } from "react-router-dom"
-import Profile from './profile'
+import ChangePassword from './changepassword'
 
 const mapStateToProps = (state) => ({
   userData: state.user.data,
@@ -9,7 +9,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  updateUser: (userdata) => dispatch(userActions.update(userdata)),
+  changePassword: (changePasswordRequest) => dispatch(userActions.changePassword(changePasswordRequest)),
 })
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Profile))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ChangePassword))

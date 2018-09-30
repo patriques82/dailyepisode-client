@@ -8,6 +8,9 @@ export const types = {
   UPDATE_USER_REQUEST: 'UPDATE_USER_REQUEST',
   UPDATE_USER_SUCCESS: 'UPDATE_USER_SUCCESS',
   UPDATE_USER_FAILURE: 'UPDATE_USER_FAILURE',
+  UPDATE_PASSWORD_REQUEST: 'UPDATE_PASSWORD_REQUEST',
+  UPDATE_PASSWORD_SUCCESS: 'UPDATE_PASSWORD_SUCCESS',
+  UPDATE_PASSWORD_FAILURE: 'UPDATE_USER_FAILURE',
 }
 
 const DEFAULT_STATE = {
@@ -111,6 +114,28 @@ export const actions = {
           payload: err.message,
         })
       })    
+    }
+  },
+  changePassword({ id, username, password, newPassword }) {
+    return function (dispatch, getState) {
+      dispatch({
+        type: types.UPDATE_USER_REQUEST,
+      })
+      api.updateUser(id, username, password, newPassword)
+      .then(response => {
+        dispatch({
+          type: types.UPDATE_USER_SUCCESS,
+          payload: {
+            newPassword,
+          }
+        })
+      })
+      .catch(err => {
+        dispatch({
+          type: types.UPDATE_USER_FAILURE,
+          payload: err.message,
+        })
+      }) 
     }
   },
   logout() {
