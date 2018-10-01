@@ -53,6 +53,7 @@ export function reducer(state = DEFAULT_STATE, action) {
       return {
         ...state,
         loading: true,
+        error: action.payload,
       }
     case types.UPDATE_USER_SUCCESS:
       return {
@@ -63,6 +64,26 @@ export function reducer(state = DEFAULT_STATE, action) {
           username: action.payload.username,
           notificationIntervalInDays: action.payload.notificationIntervalInDays,
         },
+      }
+    case types.UPDATE_PASSWORD_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      }
+    case types.UPDATE_PASSWORD_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        data: {
+          ...state.data,
+          password: action.payload,
+        }
+      }
+    case types.UPDATE_PASSWORD_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
       }
     default:
       return state
@@ -119,20 +140,18 @@ export const actions = {
   changePassword({ id, username, password, newPassword }) {
     return function (dispatch, getState) {
       dispatch({
-        type: types.UPDATE_USER_REQUEST,
+        type: types.UPDATE_PASSWORD_REQUEST,
       })
-      api.updateUser(id, username, password, newPassword)
+      api.changePassword(id, username, password, newPassword)
       .then(response => {
         dispatch({
-          type: types.UPDATE_USER_SUCCESS,
-          payload: {
-            newPassword,
-          }
+          type: types.UPDATE_PASSWORD_SUCCESS,
+          payload: newPassword,
         })
       })
       .catch(err => {
         dispatch({
-          type: types.UPDATE_USER_FAILURE,
+          type: types.UPDATE_PASSWORD_FAILURE,
           payload: err.message,
         })
       }) 

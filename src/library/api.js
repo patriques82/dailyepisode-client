@@ -21,7 +21,7 @@ export default {
       headers: { 'Authorization': basicToken },
     })
   },
-  updatePassword: (accountId, username, password, newPassword) => {
+  changePassword: (accountId, username, password, newPassword) => {
     const basicToken = "Basic " + Base64.encode(username + ":" + password) 
     const data = {
       accountId,
