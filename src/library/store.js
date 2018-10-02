@@ -4,6 +4,7 @@ import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage' 
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { reducer as user } from '../ducks/user'
+import { reducer as search } from '../ducks/search'
 
 const persistConfig = {
   key: 'root',
@@ -12,6 +13,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   user,
+  search,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

@@ -4,6 +4,9 @@ import { Base64 } from 'js-base64'
 const hostName = "http://localhost:8080"
 
 export default {
+  search: (searchTerm) => {
+    return axios.get(hostName + '/api/series/search?query=' + searchTerm)
+  },
   getUser: (username, password) => {
     const basicToken = "Basic " + Base64.encode(username + ":" + password) 
     return axios.get(hostName + '/api/user/me', {
@@ -30,5 +33,5 @@ export default {
     return axios.put(hostName + '/api/user/change-password', data, {
       headers: { 'Authorization': basicToken },
     })
-  }
+  },
 }

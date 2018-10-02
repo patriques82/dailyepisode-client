@@ -2,10 +2,12 @@ import './search.css'
 import React, { Component } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { 
+  Button,
   Container,
   Col, 
+  Form,
+  FormFeedback,
   InputGroup, 
-  InputGroupText, 
   InputGroupAddon, 
   Input, 
   Media,
@@ -37,65 +39,79 @@ class SubscriptionButton extends Component {
   }
 }
 
-class SearchResult extends Component {
-  render() {
-    return (
-      <div className="search-result-container">
-        <Container>
+const SearchResult = (props) => (
+  <div className="search-result-container">
+    <Container>
+      <Row>
+        <Col xs="2">
+          <Media>
+            <Media left href="#">
+              <Media src={props.series.imageUrl} alt="Generic placeholder image" />
+            </Media>
+          </Media>
+        </Col>
+        <Col xs="8">
+          <div>
+            <h3>{props.series.name}</h3> 
+            <p>{props.series.overview}</p>
+          </div>
+        </Col>
+        <Col xs="2">
           <Row>
-            <Col xs="2">
-              <Media>
-                <Media left href="#">
-                  <Media src="https://image.tmdb.org/t/p/w154/kCNl4QPstAqChFD0NnLpbDFG8ul.jpg" 
-                        alt="Generic placeholder image" />
-                </Media>
-              </Media>
-            </Col>
-            <Col xs="8">
-              <div>
-                <h3>Maniac</h3> 
-                <p>Two strangers are drawn to a mysterious pharmaceutical trial that will, 
-                  they're assured, with no complications or side-effects whatsoever, solve 
-                  all of their problems, permanently. Things do not go as planned.</p>
-              </div>
-            </Col>
-            <Col xs="2">
-              <Row>
-                <SubscriptionButton />
-              </Row>
-              <Row>
-                <div>
-                  <h6>110 votes</h6>
-                  <Progress value={50}>50%</Progress>
-                </div>
-              </Row>
-            </Col>
+            <SubscriptionButton />
           </Row>
-        </Container>
-      </div>
-    )
-  }
-}
+          <Row>
+            <div>
+              <h6>{props.series.voteCount}</h6>
+              <Progress value={50}>{props.series.voteAverage}</Progress>
+            </div>
+          </Row>
+        </Col>
+      </Row>
+    </Container>
+  </div>
+)
 
 class Search extends Component {
+  state = {
+    searchTerm: '',
+    error: false,
+  }
+  handleFormSubmit = (e) => {
+    e.preventDefault()
+    if (this.state.searchTerm === '') {
+      this.setState({ error: true })
+    } else {
+      this.props.search(this.state.searchTerm)
+    }
+  }
   render() {
+    console.log(this.props.data)
     return (
       <div className="search-page">
         <div className="search-input-container">
           <div className="search-input-wrapper">
+          <Form onSubmit={this.handleFormSubmit}> 
             <InputGroup>
-              <Input placeholder="Search..."/>
+              <Input placeholder="Search..."
+                     onChange={ e => this.setState({ searchTerm: e.target.value }) }
+                     value={ this.state.searchTerm } 
+                     invalid={ this.state.error } />
               <InputGroupAddon addonType="append">
-                <InputGroupText>
+                <Button>
                   <FontAwesomeIcon icon="search" />
-                </InputGroupText>
+                </Button>
               </InputGroupAddon>
+              { this.state.error && 
+                <FormFeedback>Search term is empty</FormFeedback> 
+              }
             </InputGroup>
+          </Form>
           </div>
         </div>
-        <SearchResult />
-        <SearchResult />
-        <SearchResult />
+        { this.props.data.map((series, index) => (
+          <SearchResult key={index} series={series} />
+        )) }
       </div>
     )
   }

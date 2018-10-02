@@ -6,7 +6,7 @@ import { Jumbotron, Container } from 'reactstrap'
 const Home = (props) => {
   return (
     <div>
-      <Jumbotron header className="text-center">
+      <Jumbotron className="text-center">
         <Container>
           <FontAwesomeIcon icon="tv" className="tv-main-icon"/>
           <h1 className="display-3">Dailyepisode</h1>
@@ -15,8 +15,8 @@ const Home = (props) => {
           </p>
         </Container>
       </Jumbotron>
-        <div class="progressbar-container">
-          <ul class="progressbar">
+        <div className="progressbar-container">
+          <ul className="progressbar">
             <li>Login</li>
             <li>Search tv-shows</li>
             <li>Subscribe</li>

@@ -15,7 +15,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import Header from './header/headercontainer'
 import Home from './home/home'
-import Search from './search/search'
+import Search from './search/searchcontainer'
 import Login from './login/logincontainer'
 import Profile from './profile/profilecontainer'
 import ChangePassword from './changepassword/changepasswordcontainer'
