@@ -4,6 +4,7 @@ import {
   Col, 
   Button, 
   Form, 
+  FormFeedback,
   FormGroup, 
   Input, 
   Label,
@@ -17,10 +18,24 @@ class Profile extends Component {
     newUsername: this.props.userData.username,
     notificationIntervalInDays: this.props.userData.notificationIntervalInDays,
     password: this.props.userData.password,
+    usernameError: false,
+  }
+  isValid(username) {
+    const usernameRegexp = new RegExp("^[a-z0-9_-]{3,15}")
+    return usernameRegexp.test(username)
   }
   handleFormSubmit = (e) => {
     e.preventDefault()
-    this.props.updateUser(this.state);
+    let usernameError = false
+    if (!this.isValid(this.state.newUsername)) {
+       usernameError = true
+    }
+    if (!usernameError) {
+      let { usernameError, ...profileChangeRequest } = this.state
+      this.props.updateUser(profileChangeRequest);
+    } else {
+      this.setState({ usernameError })
+    }
   }
   render() {
     if (!this.props.authenticated) {
@@ -37,7 +52,11 @@ class Profile extends Component {
                 <Input type="text" 
                        id="username" 
                        onChange={ e => this.setState({ newUsername: e.target.value }) }
-                       value={this.state.newUsername} />
+                       value={this.state.newUsername}
+                       invalid={ this.state.usernameError } />
+                <FormFeedback invalid={this.state.usernameError }>
+                  Username must be between 3 and 15 chars, and consist of any lower, upper case character, digit, '-' or '_' only
+                </FormFeedback>
               </FormGroup>
               <FormGroup>
                 <Label for="email">Email</Label>

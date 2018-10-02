@@ -4,24 +4,36 @@ import {
   Button,
   Col, 
   Form, 
+  FormFeedback,
   FormGroup, 
   Input, 
   Row } from 'reactstrap'
 
-const DEFAULT_STATE = {
-  username: '',
-  password: '',
-}
-
 class Login extends Component {
   state = {
-    ...DEFAULT_STATE,
+    username: '',
+    password: '',
+    errors: {
+      username: false,
+      password: false,
+    },
   }
   handleFormSubmit = (e) => {
     e.preventDefault()
-    this.props.fetchUser(this.state);
-    this.setState(DEFAULT_STATE);
-    this.props.history.push('/search')
+    let errors = {}
+    if (this.state.username === '') {
+      errors["username"] = true
+    }
+    if (this.state.password === '') {
+      errors["password"] = true
+    }
+    if (Object.keys(errors).length === 0) {
+      let { errors, ...loginRequest } = this.state
+      this.props.fetchUser(loginRequest);
+    //this.props.history.push('/search')
+    } else {
+      this.setState({ errors })
+    }
   }
   render() {
     return (
@@ -35,14 +47,22 @@ class Login extends Component {
                        id="username" 
                        placeholder="Username" 
                        onChange={ e => this.setState({ username: e.target.value }) }
-                       value={this.state.userName} />
+                       value={this.state.userName} 
+                       invalid={ this.state.errors["username"] } />
+                <FormFeedback invalid={this.state.errors["username"]}>
+                  Username cannot be empty
+                </FormFeedback>
               </FormGroup>
               <FormGroup>
                 <Input type="password" 
                        id="password" 
                        placeholder="Password" 
                        onChange={ e => this.setState({ password: e.target.value }) }
-                       value={this.state.password} />
+                       value={this.state.password}
+                       invalid={ this.state.errors["password"] } />
+                <FormFeedback invalid={this.state.errors["password"]}>
+                  Password cannot be empty
+                </FormFeedback>
               </FormGroup>
               <div className="button-container">
                 <Button outline color="secondary" type="submit">
