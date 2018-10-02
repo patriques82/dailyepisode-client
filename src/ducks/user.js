@@ -18,7 +18,6 @@ const DEFAULT_STATE = {
   data: {},
   error: null,
   authenticated: false,
-  redirect: false,
 }
 
 export function reducer(state = DEFAULT_STATE, action) {
@@ -38,14 +37,12 @@ export function reducer(state = DEFAULT_STATE, action) {
           password: action.payload.password,
         },
         authenticated: true,
-        redirect: true,
       }
     case types.FETCH_USER_FAILURE:
       return {
         ...state,
         loading: false,
         error: action.payload,
-        redirect: false,
       }
     case types.REMOVE_USER_DETAILS:
       return {
