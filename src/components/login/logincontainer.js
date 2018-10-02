@@ -5,6 +5,8 @@ import Login from './login'
 
 const mapStateToProps = (state) => ({
   loading: state.user.loading,
+  authenticated: state.user.authenticated,
+  error: state.user.error,
 })
 
 const mapDispatchToProps = (dispatch) => ({

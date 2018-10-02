@@ -18,6 +18,7 @@ const DEFAULT_STATE = {
   data: {},
   error: null,
   authenticated: false,
+  redirect: false,
 }
 
 export function reducer(state = DEFAULT_STATE, action) {
@@ -26,6 +27,7 @@ export function reducer(state = DEFAULT_STATE, action) {
       return {
         ...state,
         loading: true,
+        error: null,
       }
     case types.FETCH_USER_SUCCESS:
       return {
@@ -36,16 +38,19 @@ export function reducer(state = DEFAULT_STATE, action) {
           password: action.payload.password,
         },
         authenticated: true,
+        redirect: true,
       }
     case types.FETCH_USER_FAILURE:
       return {
         ...state,
         loading: false,
         error: action.payload,
+        redirect: false,
       }
     case types.REMOVE_USER_DETAILS:
       return {
         ...state,
+        error: null,
         data: {},
         authenticated: false,
       }
@@ -53,7 +58,7 @@ export function reducer(state = DEFAULT_STATE, action) {
       return {
         ...state,
         loading: true,
-        error: action.payload,
+        error: null,
       }
     case types.UPDATE_USER_SUCCESS:
       return {
@@ -65,10 +70,17 @@ export function reducer(state = DEFAULT_STATE, action) {
           notificationIntervalInDays: action.payload.notificationIntervalInDays,
         },
       }
+    case types.UPDATE_USER_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      }
     case types.UPDATE_PASSWORD_REQUEST:
       return {
         ...state,
         loading: true,
+        error: null,
       }
     case types.UPDATE_PASSWORD_SUCCESS:
       return {
@@ -109,7 +121,7 @@ export const actions = {
       .catch(err => {
         dispatch({
           type: types.FETCH_USER_FAILURE,
-          payload: err.message,
+          payload: "Unauthorized user",
         })
       })
     }
@@ -132,7 +144,7 @@ export const actions = {
       .catch(err => {
         dispatch({
           type: types.UPDATE_USER_FAILURE,
-          payload: err.message,
+          payload: "Failed updating user data",
         })
       })    
     }
@@ -152,7 +164,7 @@ export const actions = {
       .catch(err => {
         dispatch({
           type: types.UPDATE_PASSWORD_FAILURE,
-          payload: err.message,
+          payload: "Failed updating password",
         })
       }) 
     }
