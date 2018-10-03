@@ -9,7 +9,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  search: (searchTerm) => dispatch(searchActions.search(searchTerm))
+  search: (searchRequest) => dispatch(searchActions.search(searchRequest))
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Search))

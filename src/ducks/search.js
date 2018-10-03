@@ -38,12 +38,12 @@ export function reducer(state = DEFAULT_STATE, action) {
 }
 
 export const actions = {
-  search(searchTerm) {
+  search({ searchTerm, page }) {
     return function (dispatch, getState) {
       dispatch({
         type: types.SEARCH_REQUEST,
       })
-      api.search(searchTerm)
+      api.search(searchTerm, page)
       .then(response => {
         dispatch({
           type: types.SEARCH_SUCCESS,

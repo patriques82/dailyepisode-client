@@ -75,6 +75,7 @@ const SearchResult = (props) => (
 class Search extends Component {
   state = {
     searchTerm: '',
+    page: 1,
     error: false,
   }
   handleFormSubmit = (e) => {
@@ -82,7 +83,9 @@ class Search extends Component {
     if (this.state.searchTerm === '') {
       this.setState({ error: true })
     } else {
-      this.props.search(this.state.searchTerm)
+      let { error, ...searchRequest } = this.state
+      console.log(searchRequest)
+      this.props.search(searchRequest)
     }
   }
   render() {

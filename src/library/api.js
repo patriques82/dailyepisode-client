@@ -4,8 +4,8 @@ import { Base64 } from 'js-base64'
 const hostName = "http://localhost:8080"
 
 export default {
-  search: (searchTerm) => {
-    return axios.get(hostName + '/api/series/search?query=' + searchTerm)
+  search: (searchTerm, page) => {
+    return axios.get(hostName + '/api/series/search/' + page + '?query=' + searchTerm)
   },
   getUser: (username, password) => {
     const basicToken = "Basic " + Base64.encode(username + ":" + password) 
