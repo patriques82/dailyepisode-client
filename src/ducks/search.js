@@ -8,7 +8,7 @@ export const types = {
 
 const DEFAULT_STATE = {
   loading: false,
-  data: [],
+  data: {},
   error: null,
 }
 
@@ -47,7 +47,7 @@ export const actions = {
       .then(response => {
         dispatch({
           type: types.SEARCH_SUCCESS,
-          payload: response.data.results,
+          payload: { ...response.data, searchTerm }
         })
       })
       .catch(err => {
