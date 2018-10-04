@@ -1,15 +1,19 @@
 import { connect } from 'react-redux'
 import { withRouter } from "react-router-dom"
 import { actions as searchActions } from '../../ducks/search'
+import { actions as subscribeActions } from '../../ducks/subscriptions'
 import Search from './search'
 
 const mapStateToProps = (state) => ({
+  userData: state.user.data,
+  subscriptions: state.subscription.subscriptions,
   loading: state.search.loading,
-  data: state.search.data,
+  searchData: state.search.data,
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  search: (searchRequest) => dispatch(searchActions.search(searchRequest))
+  search: (searchRequest) => dispatch(searchActions.search(searchRequest)),
+  subscribe: (username, password, subscribeRequest) => dispatch(subscribeActions.subscribe(username, password, subscribeRequest)),
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Search))

@@ -1,5 +1,6 @@
 import './search.css'
 import React, { Component } from 'react'
+import _ from 'lodash'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { 
   Button,
@@ -9,6 +10,18 @@ import {
   Progress,
   Row } from 'reactstrap'
 
+const InactiveButton = (props) => (
+  <Button disabled outline color="success">
+    Subscribe <FontAwesomeIcon icon="check-circle" />
+  </Button>
+)
+
+const ActiveButton = (props) => (
+  <Button outline color={props.active ? "success" : "secondary"} className="active-button">
+    Subscribe { props.active && <FontAwesomeIcon icon="check-circle" /> }
+  </Button>
+)
+
 class SubscriptionButton extends Component {
   state = { active: false }
   handleMouseEnter = (e) => {
@@ -17,14 +30,21 @@ class SubscriptionButton extends Component {
   handleMouseLeave = (e) => {
     this.setState({ active: false })
   }
+  handleClick = (e) => {
+    this.props.handleSubscribeClick(this.props.remoteId)
+  }
+  alreadySubscribed = () => {
+    const foundSubscription = _.find(this.props.subscriptions, s => s.remoteId === this.props.remoteId)
+    return typeof foundSubscription !== 'undefined'
+  }
   render() {
+    const alreadySubscribed = this.alreadySubscribed()
     return (
       <Container className="subscribe-container"
                  onMouseEnter={this.handleMouseEnter}
-                 onMouseLeave={this.handleMouseLeave} >
-        <Button outline color="secondary">
-          Subscribe { this.state.active && <FontAwesomeIcon icon="check-circle" /> }
-        </Button>
+                 onMouseLeave={this.handleMouseLeave} 
+                 onClick={this.handleClick}>
+        { alreadySubscribed ? <InactiveButton /> : <ActiveButton active={this.state.active} /> }
       </Container>
     )
   }
@@ -44,12 +64,14 @@ const SearchResult = (props) => (
         <Col xs="8">
           <div>
             <h3>{props.series.name}</h3> 
-            <p>{ props.series.overview || "No description" }</p>
+            <p>{props.series.overview || "No description"}</p>
           </div>
         </Col>
         <Col xs="2">
           <Row>
-            <SubscriptionButton />
+            <SubscriptionButton remoteId={props.series.remoteId} 
+                                subscriptions={props.subscriptions}
+                                handleSubscribeClick={props.handleSubscribeClick} />
           </Row>
           <Row>
             <Container>

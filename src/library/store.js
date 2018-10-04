@@ -5,6 +5,7 @@ import storage from 'redux-persist/lib/storage'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { reducer as user } from '../ducks/user'
 import { reducer as search } from '../ducks/search'
+import { reducer as subscription } from '../ducks/subscriptions'
 
 const persistConfig = {
   key: 'root',
@@ -14,6 +15,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   user,
   search,
+  subscription,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

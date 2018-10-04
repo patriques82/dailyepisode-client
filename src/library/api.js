@@ -7,6 +7,12 @@ export default {
   search: (searchTerm, page) => {
     return axios.get(hostName + '/api/series/search/' + page + '?query=' + searchTerm)
   },
+  subscribe: (username, password, subscriptionRequest) => {
+    const basicToken = "Basic " + Base64.encode(username + ":" + password) 
+    return axios.post(hostName + '/api/subscription', subscriptionRequest, {
+      headers: { 'Authorization' : basicToken }
+    })
+  },
   getUser: (username, password) => {
     const basicToken = "Basic " + Base64.encode(username + ":" + password) 
     return axios.get(hostName + '/api/user/me', {
