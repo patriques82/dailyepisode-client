@@ -5,19 +5,13 @@ import storage from 'redux-persist/lib/storage'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { reducer as user } from '../ducks/user'
 import { reducer as search } from '../ducks/search'
-import { reducer as subscription } from '../ducks/subscriptions'
+import { reducer as subscription } from '../ducks/subscription'
 
 const persistConfig = {
   key: 'root',
   storage,
 }
-
-const rootReducer = combineReducers({
-  user,
-  search,
-  subscription,
-})
-
+const rootReducer = combineReducers({ user, search, subscription })
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 export default () => {

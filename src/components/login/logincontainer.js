@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 import { actions as userActions } from '../../ducks/user'
+import { actions as subscriptionActions } from '../../ducks/subscription'
 import { withRouter } from "react-router-dom"
 import Login from './login'
 
@@ -10,7 +11,10 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchUser: (userdata) => dispatch(userActions.login(userdata)),
+  fetchUser: (userdata) => {
+    dispatch(userActions.login(userdata))
+    dispatch(subscriptionActions.getSubscriptions(userdata))
+  }
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login))
