@@ -39,6 +39,7 @@ export function reducer(state = DEFAULT_STATE, action) {
 
 export const actions = {
   search({ searchTerm, page }) {
+    console.log(searchTerm, page)
     return function (dispatch, getState) {
       dispatch({
         type: types.SEARCH_REQUEST,

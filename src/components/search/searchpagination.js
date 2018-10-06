@@ -10,7 +10,7 @@ import {
 class SearchPagination extends Component {
   handlePageClick = (e, page) => {
     e.preventDefault()
-    this.props.handlePageClick(page)
+    this.props.handlePageClick(this.props.searchTerm, page)
   }
   render() {
     return (
