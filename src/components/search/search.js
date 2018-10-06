@@ -10,30 +10,29 @@ class Search extends Component {
     this.props.search({ searchTerm, page: 1 })
   }
   handleSubscribeClick = (remoteId) => {
-    let {id, username, password,} = this.props.userData
+    let { id, username, password, } = this.props.userData
     this.props.subscribe(username, password, { accountId: id, remoteId })
   }
-  handlePageClick = (searchTerm, page) => {
+  handlePageClick = (page) => {
+    let { searchTerm, } = this.props.searchData
     this.props.search({ searchTerm, page })
   }
   render() {
-    const searchData = this.props.searchData
-    const emptyData = _.isEmpty(searchData)
+    let { totalPages, page, results, } = this.props.searchData
     return (
       <div>
         <SearchForm handleFormSubmit={this.handleFormSubmit} />
         
-        {!emptyData && searchData.results.map((series, index) => (
+        {!_.isUndefined(results) && results.map((series, index) => (
           <SearchResult key={index} 
                         series={series} 
                         subscriptions={this.props.subscriptions}
                         handleSubscribeClick={this.handleSubscribeClick} />
         )) }
 
-        {!emptyData &&
-          <SearchPagination searchTerm={searchData.searchTerm} 
-                            totalPages={searchData.totalPages}
-                            page={searchData.page} 
+        {!_.isUndefined(totalPages) &&
+          <SearchPagination totalPages={totalPages}
+                            currentPage={page} 
                             handlePageClick={this.handlePageClick} />
         }
       </div>
