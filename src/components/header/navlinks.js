@@ -18,7 +18,7 @@ const LoggedInLinks = (props) => {
         <NavLink tag={Link} to="/search">Search</NavLink>
       </NavItem>
       <NavItem>
-        <NavLink tag={Link} to="/search">Subscriptions</NavLink>
+        <NavLink tag={Link} to="/subscriptions">Subscriptions</NavLink>
       </NavItem>
       <UncontrolledDropdown nav inNavbar>
         <DropdownToggle nav>

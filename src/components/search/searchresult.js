@@ -6,9 +6,9 @@ import {
   Button,
   Container,
   Col, 
-  Media,
-  Progress,
   Row } from 'reactstrap'
+import VoteCount from '../common/votecount'
+import Image from '../common/image'
 
 const InactiveButton = (props) => (
   <Button disabled outline color="success">
@@ -34,8 +34,9 @@ class SubscriptionButton extends Component {
     this.props.handleSubscribeClick(this.props.remoteId)
   }
   alreadySubscribed = () => {
-    const foundSubscription = _.find(this.props.subscriptions, s => s.remoteId === this.props.remoteId)
-    return typeof foundSubscription !== 'undefined'
+    const predicate = subscription => subscription.remoteId === this.props.remoteId
+    const foundSubscription = _.find(this.props.subscriptions, predicate) 
+    return !_.isUndefined(foundSubscription)
   }
   render() {
     const alreadySubscribed = this.alreadySubscribed()
@@ -55,17 +56,13 @@ const SearchResult = (props) => (
     <Container>
       <Row>
         <Col xs="2">
-          <Media>
-            <Media left>
-              <Media src={props.series.imageUrl || "placeholder.png"} alt="image" />
-            </Media>
-          </Media>
+          <Image url={props.series.imageUrl || "placeholder.png"} />
         </Col>
         <Col xs="8">
-          <div>
-            <h3>{props.series.name}</h3> 
-            <p>{props.series.overview || "No description"}</p>
-          </div>
+          <Container className="main-content-container">
+            <h3 className="name-header">{props.series.name}</h3> 
+            <p className="overview">{props.series.overview || "No description"}</p>
+          </Container>
         </Col>
         <Col xs="2">
           <Row>
@@ -74,12 +71,7 @@ const SearchResult = (props) => (
                                 handleSubscribeClick={props.handleSubscribeClick} />
           </Row>
           <Row>
-            <Container>
-              <h6>{props.series.voteCount} votes</h6>
-              <Progress value={props.series.voteAverage*10}>
-                {parseInt(props.series.voteAverage*10, 10)}%
-              </Progress>
-            </Container>
+            <VoteCount votes={props.series.count} average={props.series.voteAverage*10} />
           </Row>
         </Col>
       </Row>

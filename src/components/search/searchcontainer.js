@@ -6,7 +6,7 @@ import Search from './search'
 
 const mapStateToProps = (state) => ({
   userData: state.user.data,
-  subscriptions: state.subscription.subscriptions,
+  subscriptions: state.subscription.data,
   loading: state.search.loading,
   searchData: state.search.data,
 })

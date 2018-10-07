@@ -46,4 +46,10 @@ export default {
       headers: { 'Authorization' : basicToken }
     })
   },
+  removeSubscription: (username, password, id) => {
+    const basicToken = "Basic " + Base64.encode(username + ":" + password) 
+    return axios.delete(hostName + '/api/subscription/' + id, {
+      headers: { 'Authorization' : basicToken }
+    })
+  }
 }

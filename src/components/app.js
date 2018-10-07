@@ -10,18 +10,20 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { 
   faSearch,  
   faCheckCircle,
+  faMinusCircle,
   faUser,
   faTv
 } from '@fortawesome/free-solid-svg-icons'
 import Header from './header/headercontainer'
 import Home from './home/home'
-import Search from './search/searchcontainer'
 import Login from './login/logincontainer'
+import Search from './search/searchcontainer'
 import Profile from './profile/profilecontainer'
 import ChangePassword from './changepassword/changepasswordcontainer'
+import Subscriptions from './subscriptions/subscriptionscontainer'
 
 const { store, persistor } = storeConfig()
-library.add(faCheckCircle, faSearch, faTv, faUser)
+library.add(faCheckCircle, faMinusCircle, faSearch, faTv, faUser)
 
 class App extends Component {
   render() {
@@ -33,9 +35,10 @@ class App extends Component {
               <Header />
               <Route exact path="/" component={Home} />
               <Route path="/login" component={Login} />
-              <Route path="/search" component={Search} />
               <Route path="/profile" component={Profile} />
               <Route path="/change-password" component={ChangePassword} />
+              <Route path="/search" component={Search} />
+              <Route path="/subscriptions" component={Subscriptions} />
             </div>
           </Router>
         </PersistGate>
