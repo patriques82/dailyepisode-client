@@ -4,6 +4,7 @@ export const types = {
   SEARCH_REQUEST: 'SEARCH_REQUEST',
   SEARCH_SUCCESS: 'SEARCH_SUCCESS',
   SEARCH_FAILURE: 'SEARCH_FAILURE',
+  REMOVE_RESULTS: 'REMOVE_RESULTS',
 }
 
 const DEFAULT_STATE = {
@@ -31,7 +32,9 @@ export function reducer(state = DEFAULT_STATE, action) {
         ...state,
         loading: false,
         error: action.payload,
-      }
+      } 
+    case types.REMOVE_RESULTS:
+      return DEFAULT_STATE
     default:
       return state
   }
@@ -58,4 +61,9 @@ export const actions = {
       })
     }
   },
+  removeSearchResults() {
+    return {
+      type: types.REMOVE_RESULTS,
+    }
+  }
 }
