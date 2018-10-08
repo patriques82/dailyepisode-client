@@ -8,6 +8,9 @@ import {
   FormGroup, 
   Input, 
   Label,
+  Modal,
+  ModalBody,
+  ModalFooter,
   Row
 } from 'reactstrap'
 
@@ -19,6 +22,7 @@ class Profile extends Component {
     notificationIntervalInDays: this.props.userData.notificationIntervalInDays,
     password: this.props.userData.password,
     usernameError: false,
+    modal: false,
   }
   isValid(username) {
     const usernameRegexp = new RegExp("^[a-z0-9_-]{3,15}")
@@ -31,11 +35,14 @@ class Profile extends Component {
        usernameError = true
     }
     if (!usernameError) {
-      let { usernameError, ...profileChangeRequest } = this.state
+      let { usernameError, modal, ...profileChangeRequest } = this.state
       this.props.updateUser(profileChangeRequest);
     } else {
       this.setState({ usernameError })
     }
+  }
+  toggleModal = () => {
+    this.setState({ modal: !this.state.modal })
   }
   render() {
     if (!this.props.authenticated) {
@@ -54,7 +61,7 @@ class Profile extends Component {
                        onChange={ e => this.setState({ newUsername: e.target.value }) }
                        value={this.state.newUsername}
                        invalid={ this.state.usernameError } />
-                <FormFeedback invalid={this.state.usernameError }>
+                <FormFeedback invalid={this.state.usernameError ? true : undefined }>
                   Username must be between 3 and 15 chars, and consist of any lower, upper case character, digit, '-' or '_' only
                 </FormFeedback>
               </FormGroup>
@@ -84,6 +91,9 @@ class Profile extends Component {
                 </Input>
               </FormGroup>
               <div className="button-container">
+                <Button outline color="danger" onClick={this.toggleModal}>
+                  Delete
+                </Button>
                 <Button outline color="secondary" type="submit">
                   Save
                 </Button>
@@ -92,6 +102,18 @@ class Profile extends Component {
           </Col>
           <Col sm="4"></Col>
         </Row>
+        <Modal isOpen={this.state.modal} fade={false} toggle={this.toggleModal}>
+          <ModalBody>
+            Are you sure you want to delete your account?
+            If you simply don't want any more notifications
+            you can always set the notification inteval in 
+            days to 0.
+          </ModalBody>
+          <ModalFooter>
+            <Button color="danger" onClick={this.props.deleteUser}>Delete</Button>
+            <Button color="secondary" onClick={this.toggleModal}>Cancel</Button>
+          </ModalFooter>
+        </Modal>
       </div> 
     )
   }

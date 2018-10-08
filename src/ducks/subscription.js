@@ -86,6 +86,7 @@ export function reducer(state = DEFAULT_STATE, action) {
 export const actions = {
   subscribe(username, password, subscribeRequest) {
     return function (dispatch, getState) {
+      console.log(subscribeRequest)
       dispatch({
         type: types.SUBSCRIBE_REQUEST,
       })

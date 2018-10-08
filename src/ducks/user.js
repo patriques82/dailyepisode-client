@@ -11,6 +11,9 @@ export const types = {
   UPDATE_PASSWORD_REQUEST: 'UPDATE_PASSWORD_REQUEST',
   UPDATE_PASSWORD_SUCCESS: 'UPDATE_PASSWORD_SUCCESS',
   UPDATE_PASSWORD_FAILURE: 'UPDATE_USER_FAILURE',
+  REMOVE_USER_REQUEST: 'REMOVE_USER_REQUEST',
+  REMOVE_USER_SUCCESS: 'REMOVE_USER_SUCCESS',
+  REMOVE_USER_FAILURE: 'REMOVE_USER_FAILURE',
 }
 
 const DEFAULT_STATE = {
@@ -170,5 +173,26 @@ export const actions = {
     return {
       type: types.REMOVE_USER_DETAILS,
     }
+  },
+  delete() {
+    return function (dispatch, getState) {
+      dispatch({
+        type: types.REMOVE_USER_REQUEST,
+      })
+      let { username, password, } = getState().user.data
+      api.deleteUser(username, password)
+      .then(response => {
+        dispatch({
+          type: types.REMOVE_USER_SUCCESS,
+        })
+      })
+      .catch(err => {
+        dispatch({
+          type: types.REMOVE_USER_FAILURE,
+          payload: "Failed deleting account",
+        })
+      }) 
+    }
+
   }
 }
