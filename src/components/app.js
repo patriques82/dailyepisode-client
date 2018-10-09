@@ -21,6 +21,7 @@ import Search from './search/searchcontainer'
 import Profile from './profile/profilecontainer'
 import ChangePassword from './changepassword/changepasswordcontainer'
 import Subscriptions from './subscriptions/subscriptionscontainer'
+import Social from './social/socialcontainer'
 
 const { store, persistor } = storeConfig()
 library.add(faCheckCircle, faMinusCircle, faSearch, faTv, faUser)
@@ -39,6 +40,8 @@ class App extends Component {
               <Route path="/change-password" component={ChangePassword} />
               <Route path="/search" component={Search} />
               <Route path="/subscriptions" component={Subscriptions} />
+              <Route path="/subscriptions/:userId" component={Subscriptions} />
+              <Route path="/social" component={Social} />
             </div>
           </Router>
         </PersistGate>

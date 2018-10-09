@@ -25,25 +25,23 @@ class SearchForm extends Component {
   }
   render() {
     return (
-      <div className="search-input-container">
-        <div className="search-input-wrapper">
-          <Form onSubmit={this.handleFormSubmit}> 
-            <InputGroup>
-              <Input placeholder="Search..."
-                     onChange={ e => this.setState({ searchTerm: e.target.value }) }
-                     value={ this.state.searchTerm } 
-                     invalid={ this.state.error } />
-              <InputGroupAddon addonType="append">
-                <Button>
-                  <FontAwesomeIcon icon="search" />
-                </Button>
-              </InputGroupAddon>
-              { this.state.error && 
-                <FormFeedback>Search term is empty</FormFeedback> 
-              }
-            </InputGroup>
-          </Form>
-        </div>
+      <div className="search-input-wrapper">
+        <Form onSubmit={this.handleFormSubmit}> 
+          <InputGroup>
+            <Input placeholder="Search..."
+                    onChange={ e => this.setState({ searchTerm: e.target.value }) }
+                    value={ this.state.searchTerm } 
+                    invalid={ this.state.error } />
+            <InputGroupAddon addonType="append">
+              <Button>
+                <FontAwesomeIcon icon="search" />
+              </Button>
+            </InputGroupAddon>
+            { this.state.error && 
+              <FormFeedback>Search term is empty</FormFeedback> 
+            }
+          </InputGroup>
+        </Form>
       </div>
     )
   }

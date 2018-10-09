@@ -102,8 +102,8 @@ class Profile extends Component {
         <Modal isOpen={this.state.modal} fade={false} toggle={this.toggleModal}>
           <ModalBody>
             Are you sure you want to delete your account?
-            If you simply don't want any more notifications
-            you can always set the notification inteval in 
+            If you don't want any more notifications
+            you can simply set the notification inteval in 
             days to 0.
           </ModalBody>
           <ModalFooter>

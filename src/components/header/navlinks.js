@@ -20,6 +20,9 @@ const LoggedInLinks = (props) => {
       <NavItem>
         <NavLink tag={Link} to="/subscriptions">Subscriptions</NavLink>
       </NavItem>
+      <NavItem>
+        <NavLink tag={Link} to="/social">Social</NavLink>
+      </NavItem>
       <UncontrolledDropdown nav inNavbar>
         <DropdownToggle nav>
           <FontAwesomeIcon icon="user" />

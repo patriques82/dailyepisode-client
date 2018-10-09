@@ -28,7 +28,7 @@ class Search extends Component {
                         series={series} 
                         subscriptions={this.props.subscriptions}
                         handleSubscribeClick={this.handleSubscribeClick} />
-        )) }
+        ))}
 
         {!_.isUndefined(totalPages) &&
           <SearchPagination totalPages={totalPages}

@@ -1,3 +1,4 @@
+import './header.css'
 import React, { Component } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from 'react-router-dom'
@@ -24,7 +25,7 @@ class Header extends Component {
   }
   render() {
     return (
-      <div>
+      <div className="navbar-container">
         <Navbar color="light" light expand="md">
           <NavbarBrand tag={Link} to="/">
             <FontAwesomeIcon icon="tv"/>
