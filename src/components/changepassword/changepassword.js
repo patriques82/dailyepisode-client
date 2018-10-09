@@ -18,8 +18,6 @@ const DEFAULT_ERROR_STATE = {
 }
 class ChangePassword extends Component {
   state = {
-    id: this.props.userData.id,
-    username: this.props.userData.username,
     password: '',
     newPassword: '',
     confirmPassword: '',

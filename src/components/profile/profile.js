@@ -16,11 +16,8 @@ import {
 
 class Profile extends Component {
   state = {
-    id: this.props.userData.id,
-    username: this.props.userData.username,
     newUsername: this.props.userData.username,
     notificationIntervalInDays: this.props.userData.notificationIntervalInDays,
-    password: this.props.userData.password,
     usernameError: false,
     modal: false,
   }

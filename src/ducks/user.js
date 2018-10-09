@@ -126,11 +126,12 @@ export const actions = {
       })
     }
   },
-  update({ id, username, newUsername, notificationIntervalInDays, password }) {
+  update({ newUsername, notificationIntervalInDays }) {
     return function (dispatch, getState) {
       dispatch({
         type: types.UPDATE_USER_REQUEST,
       })
+      let { id, username, password, } = getState().user.data
       api.updateUser(id, username, newUsername, notificationIntervalInDays, password)
       .then(response => {
         dispatch({
@@ -149,11 +150,12 @@ export const actions = {
       })    
     }
   },
-  changePassword({ id, username, password, newPassword }) {
+  changePassword({ password, newPassword }) {
     return function (dispatch, getState) {
       dispatch({
         type: types.UPDATE_PASSWORD_REQUEST,
       })
+      let { id, username, } = getState().user.data
       api.changePassword(id, username, password, newPassword)
       .then(response => {
         dispatch({
