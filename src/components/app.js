@@ -22,10 +22,11 @@ import Profile from './profile/profilecontainer'
 import ChangePassword from './changepassword/changepasswordcontainer'
 import Subscriptions from './subscriptions/subscriptionscontainer'
 import Social from './social/socialcontainer'
+import SocialSubscriptions from './social/subscriptionscontainer'
 
 const { store, persistor } = storeConfig()
 library.add(faCheckCircle, faMinusCircle, faSearch, faTv, faUser)
-
+   
 class App extends Component {
   render() {
     return (
@@ -39,8 +40,8 @@ class App extends Component {
               <Route path="/profile" component={Profile} />
               <Route path="/change-password" component={ChangePassword} />
               <Route path="/search" component={Search} />
-              <Route path="/subscriptions" component={Subscriptions} />
-              <Route path="/subscriptions/:userId" component={Subscriptions} />
+              <Route exact path="/subscriptions" component={Subscriptions} />
+              <Route exact path="/subscriptions/:userId" component={SocialSubscriptions} />
               <Route path="/social" component={Social} />
             </div>
           </Router>

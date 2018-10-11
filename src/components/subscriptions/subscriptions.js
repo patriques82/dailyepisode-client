@@ -2,10 +2,7 @@ import './subscriptions.css'
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import _ from 'lodash'
-import SubscriptionHOC from '../common/subscription'
-import DeleteButton from '../common/deletebutton'
-
-const Subscription = SubscriptionHOC(DeleteButton)
+import Subscription from './subscription'
 
 class Subscriptions extends Component {
   render() {

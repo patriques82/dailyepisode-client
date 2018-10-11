@@ -1,7 +1,6 @@
-
 import { connect } from 'react-redux'
 import { withRouter } from "react-router-dom"
-import { actions as subscribtionActions } from '../../ducks/subscription'
+import { actions as subscriptionActions } from '../../ducks/subscription'
 import Subscriptions from './subscriptions'
 
 const mapStateToProps = (state) => ({
@@ -10,7 +9,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  delete: (id) => dispatch(subscribtionActions.removeSubscription(id)),
+  delete: (id) => dispatch(subscriptionActions.removeSubscription(id)),
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Subscriptions))

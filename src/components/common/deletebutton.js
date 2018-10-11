@@ -12,7 +12,7 @@ class DeleteButton extends Component {
   }
   handleClick = (e) => {
     e.preventDefault()
-    this.props.delete(this.props.subscription.id)
+    this.props.delete(this.props.id)
   }
   render() {
     return (

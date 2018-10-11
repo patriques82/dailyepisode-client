@@ -49,6 +49,12 @@ export default {
       headers: { 'Authorization' : basicToken }
     })
   },
+  getUserSubscriptions: (username, password, userId) => {
+    const basicToken = "Basic " + Base64.encode(username + ":" + password) 
+    return axios.get(hostName + '/api/subscription/' + userId, {
+      headers: { 'Authorization' : basicToken }
+    })
+  },
   search: (searchTerm, page) => {
     return axios.get(hostName + '/api/series/search/' + page + '?query=' + searchTerm)
   },
