@@ -4,13 +4,13 @@ import {
   Container,
   Col, 
   Row } from 'reactstrap'
-import DeleteButton from '../common/deletebutton'
 import VoteCount from '../common/votecount'
 import Image from '../common/image'
 
-const Subscription = (props) => {
+const withButtonSubscription = (Button) => (props) => {
   let { 
     id,
+    remoteId,
     firstAirDate, 
     genres, 
     homepage,
@@ -44,7 +44,11 @@ const Subscription = (props) => {
           </Col>
           <Col xs="2">
             <Row>
-              <DeleteButton id={id} delete={props.delete} />
+              <Button id={id} 
+                      delete={props.delete}
+                      remoteId={remoteId} 
+                      subscriptions={props.userSubscriptions}
+                      handleSubscribeClick={props.handleSubscribeClick} />
             </Row>
             <Row>
               <VoteCount votes={voteCount} average={voteAverage*10} />
@@ -62,4 +66,4 @@ const Subscription = (props) => {
   )
 }
 
-export default Subscription
+export default withButtonSubscription

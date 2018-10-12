@@ -83,13 +83,13 @@ export function reducer(state = DEFAULT_STATE, action) {
 }
 
 export const actions = {
-  subscribe(subscribeRequest) {
+  subscribe(remoteId) {
     return function (dispatch, getState) {
-      let { username, password, } = getState().user.data
+      let { id, username, password, } = getState().user.data
       dispatch({
         type: types.SUBSCRIBE_REQUEST,
       })
-      api.subscribe(username, password, subscribeRequest)
+      api.subscribe(username, password, { accountId: id, remoteId })
       .then(response => {
         dispatch({
           type: types.SUBSCRIBE_SUCCESS,
