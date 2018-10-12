@@ -1,4 +1,6 @@
 import api from '../library/api'
+import { toast } from 'react-toastify'
+import { Failure } from '../components/common/toast'
 import _ from 'lodash'
 
 export const types = {
@@ -17,7 +19,6 @@ export const types = {
 const DEFAULT_STATE = {
   loading: false,
   data: [],
-  error: null,
 }
 
 export function reducer(state = DEFAULT_STATE, action) {
@@ -26,7 +27,6 @@ export function reducer(state = DEFAULT_STATE, action) {
       return {
         ...state,
         loading: true,
-        error: null,
       }
     case types.SUBSCRIBE_SUCCESS:
       return {
@@ -35,16 +35,15 @@ export function reducer(state = DEFAULT_STATE, action) {
         data: [...state.data, action.payload]
       }
     case types.SUBSCRIBE_FAILURE:
+      toast(<Failure message={action.payload} />)
       return {
         ...state,
         loading: false,
-        error: action.payload,
       }
     case types.FETCH_SUBSCRIPTIONS_REQUEST:
       return {
         ...state,
         loading: true,
-        error: null,
       }
     case types.FETCH_SUBSCRIPTIONS_SUCCESS:
       return {
@@ -53,16 +52,15 @@ export function reducer(state = DEFAULT_STATE, action) {
         data: [...state.data, ...action.payload]
       }
     case types.FETCH_SUBSCRIPTIONS_FAILURE:
+      toast(<Failure message={action.payload} />)
       return {
         ...state,
         loading: false,
-        error: action.payload,
       }
     case types.REMOVE_SUBCRIPTION_REQUEST:
       return {
         ...state,
         loading: true,
-        error: null,
       }
     case types.REMOVE_SUBCRIPTION_SUCCESS:
       return {
@@ -71,10 +69,10 @@ export function reducer(state = DEFAULT_STATE, action) {
         data: _.reject(state.data, (sub) => sub.id === action.payload),
       }
     case types.REMOVE_SUBCRIPTION_FAILURE:
+      toast(<Failure message={action.payload} />)
       return {
         ...state,
         loading: false,
-        error: action.payload,
       }
     case types.REMOVE_SUBSCRIPTIONS:
       return DEFAULT_STATE

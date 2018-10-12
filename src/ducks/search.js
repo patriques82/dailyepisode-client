@@ -1,4 +1,6 @@
 import api from '../library/api'
+import { toast } from 'react-toastify'
+import { Failure } from '../components/common/toast'
 
 export const types = {
   SEARCH_REQUEST: 'SEARCH_REQUEST',
@@ -10,7 +12,6 @@ export const types = {
 const DEFAULT_STATE = {
   loading: false,
   data: {},
-  error: null,
 }
 
 export function reducer(state = DEFAULT_STATE, action) {
@@ -19,7 +20,6 @@ export function reducer(state = DEFAULT_STATE, action) {
       return {
         ...state,
         loading: true,
-        error: null,
       }
     case types.SEARCH_SUCCESS:
       return {
@@ -28,10 +28,10 @@ export function reducer(state = DEFAULT_STATE, action) {
         data: action.payload,
       }
     case types.SEARCH_FAILURE:
+      toast(<Failure message={action.payload} />)
       return {
         ...state,
         loading: false,
-        error: action.payload,
       } 
     case types.REMOVE_RESULTS:
       return DEFAULT_STATE

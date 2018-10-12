@@ -5,15 +5,20 @@ import {
   Col,
   ListGroup, 
   ListGroupItem, 
+  ListGroupItemHeading,
+  ListGroupItemText,
   Row
 } from 'reactstrap'
 import api from '../../library/api'
 
 const User = (props) => {
-  let { id, username, nrOfSubscriptions, } = props.user
+  let { id, username, email, nrOfSubscriptions, } = props.user
   return (
-    <ListGroupItem tag={Link} to={`/subscriptions/${id}`}>
-      {username} <Badge pill>{nrOfSubscriptions}</Badge>
+    <ListGroupItem>
+      <ListGroupItemHeading tag={Link} to={`/subscriptions/${id}`}>{username}</ListGroupItemHeading>
+      <ListGroupItemText>
+        {email} <Badge color="primary">{nrOfSubscriptions}</Badge>
+      </ListGroupItemText>
     </ListGroupItem>
   )
 }
@@ -21,10 +26,11 @@ const User = (props) => {
 class Social extends Component {
   state = { users: [] }
   componentWillMount() {
-    let { username, password, } = this.props.userData
+    let { id, username, password, } = this.props.userData
     api.getUsers(username, password)
     .then(response => {
-      this.setState({ users: response.data }) 
+      const users = response.data.filter(user => user.id !== id)
+      this.setState({ users }) 
     })
     .catch(error => {
      // do something       

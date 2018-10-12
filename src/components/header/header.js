@@ -1,7 +1,9 @@
 import './header.css'
+import 'react-toastify/dist/ReactToastify.css'
 import React, { Component } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
 import {
   Collapse,
   Navbar,
@@ -36,6 +38,11 @@ class Header extends Component {
             { this.props.authenticated ? <LoggedInLinks logout={this.props.logout} /> : <LoggedOutLinks /> } 
           </Collapse>
         </Navbar>
+        <ToastContainer hideProgressBar={true}
+                        position="top-center"
+                        newestOnTop={true}
+                        draggable={false}>
+        </ToastContainer>
       </div>
     )
   }

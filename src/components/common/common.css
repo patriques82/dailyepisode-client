@@ -1,3 +1,16 @@
 .image {
   float: right;
 }
+
+.error-toast {
+  color: #f17a7a;
+}
+
+.success-toast {
+  color: #8fdca0;
+}
+
+.Toastify__toast--default {
+  background-color: #f5f5f5 !important;
+  border: 1px solid #cdd4db;
+}

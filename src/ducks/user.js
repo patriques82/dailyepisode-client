@@ -1,4 +1,7 @@
+import React from 'react'
 import api from '../library/api'
+import { toast } from 'react-toastify'
+import { Success, Failure } from '../components/common/toast'
 
 export const types = {
   FETCH_USER_REQUEST: 'FETCH_USER_REQUEST',
@@ -19,7 +22,6 @@ export const types = {
 const DEFAULT_STATE = {
   loading: false,
   data: {},
-  error: null,
   authenticated: false,
 }
 
@@ -29,7 +31,6 @@ export function reducer(state = DEFAULT_STATE, action) {
       return {
         ...state,
         loading: true,
-        error: null,
       }
     case types.FETCH_USER_SUCCESS:
       return {
@@ -42,15 +43,14 @@ export function reducer(state = DEFAULT_STATE, action) {
         authenticated: true,
       }
     case types.FETCH_USER_FAILURE:
+      toast(<Failure message={action.payload} />)
       return {
         ...state,
         loading: false,
-        error: action.payload,
       }
     case types.REMOVE_USER_DETAILS:
       return {
         ...state,
-        error: null,
         data: {},
         authenticated: false,
       }
@@ -58,9 +58,9 @@ export function reducer(state = DEFAULT_STATE, action) {
       return {
         ...state,
         loading: true,
-        error: null,
       }
     case types.UPDATE_USER_SUCCESS:
+      toast(<Success message="User updated successfully!" />)
       return {
         ...state,
         loading: false,
@@ -71,18 +71,18 @@ export function reducer(state = DEFAULT_STATE, action) {
         },
       }
     case types.UPDATE_USER_FAILURE:
+      toast(<Failure message={action.payload} />)
       return {
         ...state,
         loading: false,
-        error: action.payload,
       }
     case types.UPDATE_PASSWORD_REQUEST:
       return {
         ...state,
         loading: true,
-        error: null,
       }
     case types.UPDATE_PASSWORD_SUCCESS:
+      toast(<Success message="Password updated successfully!" />)
       return {
         ...state,
         loading: false,
@@ -92,10 +92,10 @@ export function reducer(state = DEFAULT_STATE, action) {
         }
       }
     case types.UPDATE_PASSWORD_FAILURE:
+      toast(<Failure message={action.payload} />)
       return {
         ...state,
         loading: false,
-        error: action.payload,
       }
     default:
       return state
