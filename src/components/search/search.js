@@ -23,14 +23,16 @@ class Search extends Component {
       <div>
         <SearchForm handleFormSubmit={this.handleFormSubmit} />
         
-        {!_.isUndefined(results) && results.map((series, index) => (
-          <SearchResult key={index} 
-                        series={series} 
-                        subscriptions={this.props.subscriptions}
-                        handleSubscribeClick={this.handleSubscribeClick} />
-        ))}
+        {!_.isUndefined(results) &&
+          results.map((series, index) => (
+            <SearchResult key={index} 
+                          series={series} 
+                          subscriptions={this.props.subscriptions}
+                          handleSubscribeClick={this.handleSubscribeClick} />
+          ))
+        }
 
-        {!_.isUndefined(totalPages) &&
+        {!_.isUndefined(totalPages) && !_.isEmpty(results) &&
           <SearchPagination totalPages={totalPages}
                             currentPage={page} 
                             handlePageClick={this.handlePageClick} />

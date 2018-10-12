@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import _ from 'lodash'
 import api from '../../library/api'
+import { Failure } from '../common/toast'
 import Subscription from './subscription'
 
 class Subscriptions extends Component {
@@ -14,7 +16,7 @@ class Subscriptions extends Component {
       this.setState({ subscriptions: response.data })
     })
     .catch(error => {
-      //TODO
+      toast(<Failure message="Could not get user subscriptions"/>)
     })
   }
   handleSubscribeClick = (remoteId) => {
