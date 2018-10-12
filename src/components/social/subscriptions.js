@@ -20,7 +20,8 @@ class Subscriptions extends Component {
     })
   }
   handleSubscribeClick = (remoteId) => {
-    console.log(remoteId)
+    let { id, } = this.props.userData
+    this.props.subscribe({ accountId: id, remoteId })
   }
   render() {
     if (!this.props.authenticated) {

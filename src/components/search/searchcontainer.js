@@ -5,14 +5,14 @@ import { actions as subscribeActions } from '../../ducks/subscription'
 import Search from './search'
 
 const mapStateToProps = (state) => ({
-  userData: state.user.data,
+  userId: state.user.data.id,
   subscriptions: state.subscription.data,
   searchData: state.search.data,
 })
 
 const mapDispatchToProps = (dispatch) => ({
   search: (searchRequest) => dispatch(searchActions.search(searchRequest)),
-  subscribe: (username, password, subscribeRequest) => dispatch(subscribeActions.subscribe(username, password, subscribeRequest)),
+  subscribe: (subscribeRequest) => dispatch(subscribeActions.subscribe(subscribeRequest)),
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Search))

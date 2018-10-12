@@ -10,8 +10,8 @@ class Search extends Component {
     this.props.search({ searchTerm, page: 1 })
   }
   handleSubscribeClick = (remoteId) => {
-    let { id, username, password, } = this.props.userData
-    this.props.subscribe(username, password, { accountId: id, remoteId })
+    const id = this.props.userId
+    this.props.subscribe({ accountId: id, remoteId })
   }
   handlePageClick = (page) => {
     let { searchTerm, } = this.props.searchData

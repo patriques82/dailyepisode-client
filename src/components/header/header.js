@@ -40,7 +40,6 @@ class Header extends Component {
         </Navbar>
         <ToastContainer hideProgressBar={true}
                         position="top-center"
-                        autoClose={20000}
                         newestOnTop={true}
                         draggable={false}>
         </ToastContainer>
