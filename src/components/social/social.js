@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import { 
   Col,
   ListGroup, 
   Row
 } from 'reactstrap'
 import api from '../../library/api'
+import { Failure } from '../common/toast'
 import User from '../common/user'
 
 class Social extends Component {
@@ -18,7 +20,7 @@ class Social extends Component {
       this.setState({ users }) 
     })
     .catch(error => {
-     // do something       
+      toast(<Failure message="Could not get users" />)
     })
   }
   render() {

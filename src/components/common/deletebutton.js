@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Button, Container } from 'reactstrap'
+import { Button } from 'reactstrap'
 
 class DeleteButton extends Component {
   state = { active: false }
@@ -16,14 +16,13 @@ class DeleteButton extends Component {
   }
   render() {
     return (
-      <Container className="subscribe-container"
-                 onMouseEnter={this.handleMouseEnter}
-                 onMouseLeave={this.handleMouseLeave} 
-                 onClick={this.handleClick}>
-        <Button outline color="danger" className="delete-button">
-          Delete { this.state.active && <FontAwesomeIcon icon="minus-circle" /> }
-        </Button>
-      </Container>
+      <Button outline color="danger" 
+                      className="delete-button"
+                      onMouseEnter={this.handleMouseEnter}
+                      onMouseLeave={this.handleMouseLeave} 
+                      onClick={this.handleClick}>
+        Delete { this.state.active && <FontAwesomeIcon icon="minus-circle" /> }
+      </Button>
     )
   }
 }

@@ -6,6 +6,7 @@ import {
   Row
 } from 'reactstrap'
 import User from '../common/user'
+import DeleteButton from '../common/deletebutton'
 
 class Admin extends Component {
   componentWillMount() {
@@ -22,7 +23,10 @@ class Admin extends Component {
           <Col xs="6" sm="4">
             <ListGroup flush>
               { this.props.users.map((user, index) => (
-                <User key={index} user={user} />
+                <div>
+                  <User key={index} user={user} />
+                  <DeleteButton delete={(e) => this.props.delete(user.id)}/>
+                </div>
               ))}
             </ListGroup>
           </Col>

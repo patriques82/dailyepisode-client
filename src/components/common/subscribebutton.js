@@ -1,19 +1,7 @@
 import React, { Component } from 'react'
 import _ from 'lodash'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Button, Container } from 'reactstrap'
-
-const InactiveButton = (props) => (
-  <Button disabled outline color="success">
-    Subscribe <FontAwesomeIcon icon="check-circle" />
-  </Button>
-)
-
-const ActiveButton = (props) => (
-  <Button outline color={props.active ? "success" : "secondary"} className="active-button">
-    Subscribe { props.active && <FontAwesomeIcon icon="check-circle" /> }
-  </Button>
-)
+import { Button } from 'reactstrap'
 
 class SubscribeButton extends Component {
   state = { active: false }
@@ -34,13 +22,21 @@ class SubscribeButton extends Component {
   }
   render() {
     const alreadySubscribed = this.alreadySubscribed()
+    if (alreadySubscribed) {
+      return (
+        <Button disabled outline color="success">
+          Subscribe <FontAwesomeIcon icon="check-circle" />
+        </Button>
+      )
+    } 
     return (
-      <Container className="subscribe-container"
-                 onMouseEnter={this.handleMouseEnter}
-                 onMouseLeave={this.handleMouseLeave} 
-                 onClick={this.handleClick}>
-        { alreadySubscribed ? <InactiveButton /> : <ActiveButton active={this.state.active} /> }
-      </Container>
+      <Button outline color={this.state.active ? "success" : "secondary"} 
+                      className="active-button"
+                      onMouseEnter={this.handleMouseEnter}
+                      onMouseLeave={this.handleMouseLeave} 
+                      onClick={this.handleClick} >
+        Subscribe { this.state.active && <FontAwesomeIcon icon="check-circle" /> }
+      </Button>
     )
   }
 }

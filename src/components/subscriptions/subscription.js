@@ -44,11 +44,13 @@ const withButtonSubscription = (Button) => (props) => {
           </Col>
           <Col xs="2">
             <Row>
-              <Button id={id} 
-                      delete={props.delete}
-                      remoteId={remoteId} 
-                      subscriptions={props.userSubscriptions}
-                      handleSubscribeClick={props.handleSubscribeClick} />
+              <Container className="subscribe-container">
+                <Button id={id} 
+                        delete={props.delete}
+                        remoteId={remoteId} 
+                        subscriptions={props.userSubscriptions}
+                        handleSubscribeClick={props.handleSubscribeClick} />
+              </Container>
             </Row>
             <Row>
               <VoteCount votes={voteCount} average={voteAverage*10} />

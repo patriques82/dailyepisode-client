@@ -43,6 +43,12 @@ export default {
       headers: { 'Authorization': basicToken },
     })
   },
+  deleteOtherUser: (username, password, accountId) => {
+    const basicToken = "Basic " + Base64.encode(username + ":" + password) 
+    return axios.delete(hostName + '/admin/user/' + accountId, {
+      headers: { 'Authorization': basicToken },
+    })
+  },
   getSubscriptions: (username, password) => {
     const basicToken = "Basic " + Base64.encode(username + ":" + password) 
     return axios.get(hostName + '/api/subscription', {
@@ -59,7 +65,6 @@ export default {
     return axios.get(hostName + '/api/series/search/' + page + '?query=' + searchTerm)
   },
   subscribe: (username, password, subscriptionRequest) => {
-    console.log(username, password, subscriptionRequest)
     const basicToken = "Basic " + Base64.encode(username + ":" + password) 
     return axios.post(hostName + '/api/subscription', subscriptionRequest, {
       headers: { 'Authorization' : basicToken }

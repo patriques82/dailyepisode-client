@@ -23,9 +23,11 @@ const SearchResult = (props) => (
         </Col>
         <Col xs="2">
           <Row>
-            <SubscribeButton remoteId={props.series.remoteId} 
-                             subscriptions={props.subscriptions}
-                             handleSubscribeClick={props.handleSubscribeClick} />
+            <Container className="subscribe-container">
+              <SubscribeButton remoteId={props.series.remoteId} 
+                               subscriptions={props.subscriptions}
+                               handleSubscribeClick={props.handleSubscribeClick} />
+            </Container>
           </Row>
           <Row>
             <VoteCount votes={props.series.count} average={props.series.voteAverage*10} />

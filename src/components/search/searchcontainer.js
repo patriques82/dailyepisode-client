@@ -12,7 +12,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   search: (searchRequest) => dispatch(searchActions.search(searchRequest)),
-  subscribe: (subscribeRequest) => dispatch(subscribeActions.subscribe(subscribeRequest)),
+  subscribe: (remoteId) => dispatch(subscribeActions.subscribe(remoteId)),
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Search))

@@ -9,7 +9,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  getUsers: () => dispatch(adminActions.getUsers())
+  getUsers: () => dispatch(adminActions.getUsers()),
+  delete: (accountId) => dispatch(adminActions.delete(accountId)),
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Admin))
