@@ -15,6 +15,7 @@ import {
   faTv
 } from '@fortawesome/free-solid-svg-icons'
 import Header from './header/headercontainer'
+import Admin from './admin/admincontainer'
 import Home from './home/home'
 import Login from './login/logincontainer'
 import Search from './search/searchcontainer'
@@ -36,6 +37,7 @@ class App extends Component {
             <div>
               <Header />
               <Route exact path="/" component={Home} />
+              <Route path="/admin" component={Admin} />
               <Route path="/login" component={Login} />
               <Route path="/profile" component={Profile} />
               <Route path="/change-password" component={ChangePassword} />

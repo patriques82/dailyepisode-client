@@ -5,25 +5,15 @@ import {
   ListGroup, 
   Row
 } from 'reactstrap'
-import api from '../../library/api'
 import User from '../common/user'
 
-class Social extends Component {
-  state = { users: [] }
+class Admin extends Component {
   componentWillMount() {
-    let { id, username, password, } = this.props.userData
-    api.getUsers(username, password)
-    .then(response => {
-      const users = response.data.filter(user => user.id !== id)
-      this.setState({ users }) 
-    })
-    .catch(error => {
-     // do something       
-    })
+    this.props.getUsers()
   }
   render() {
-    if (!this.props.authenticated) {
-      return <Redirect to="/login" />
+    if (!this.props.admin) {
+      return <Redirect to="/search" />
     }
     return (
       <div className="">
@@ -31,7 +21,7 @@ class Social extends Component {
           <Col xs="6" sm="4"></Col>
           <Col xs="6" sm="4">
             <ListGroup flush>
-              { this.state.users.map((user, index) => (
+              { this.props.users.map((user, index) => (
                 <User key={index} user={user} />
               ))}
             </ListGroup>
@@ -43,4 +33,4 @@ class Social extends Component {
   }
 }
 
-export default Social
+export default Admin

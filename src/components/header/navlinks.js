@@ -28,6 +28,9 @@ const LoggedInLinks = (props) => {
           <FontAwesomeIcon icon="user" />
         </DropdownToggle>
         <DropdownMenu right>
+          { props.admin && <DropdownItem tag={Link} to="/admin">
+            Admin
+          </DropdownItem> }
           <DropdownItem tag={Link} to="/profile">
             Profile
           </DropdownItem>

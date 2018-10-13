@@ -6,6 +6,7 @@ import { actions as searchActions } from '../../ducks/search'
 
 const mapStateToProps = (state) => ({
   authenticated: state.user.authenticated,
+  admin: state.user.data.admin,
 })
 
 const mapDispatchToProps = (dispatch) => ({

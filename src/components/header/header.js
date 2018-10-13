@@ -35,7 +35,7 @@ class Header extends Component {
           </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
-            { this.props.authenticated ? <LoggedInLinks logout={this.props.logout} /> : <LoggedOutLinks /> } 
+            { this.props.authenticated ? <LoggedInLinks {...this.props} /> : <LoggedOutLinks /> } 
           </Collapse>
         </Navbar>
         <ToastContainer hideProgressBar={true}
