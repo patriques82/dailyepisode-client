@@ -8,6 +8,9 @@ export const types = {
   GET_USERS_REQUEST: 'GET_USERS_REQUEST',
   GET_USERS_SUCCESS: 'GET_USERS_SUCCESS',
   GET_USERS_FAILURE: 'GET_USERS_FAILURE',
+  CREATE_USER_REQUEST: 'CREATE_USER_REQUEST',
+  CREATE_USER_SUCCESS: 'CREATE_USER_SUCCESS',
+  CREATE_USER_FAILURE: 'CREATE_USER_FAILURE',
   DELETE_USER_REQUEST: 'DELETE_USER_REQUEST',
   DELETE_USER_SUCCESS: 'DELETE_USER_SUCCESS',
   DELETE_USER_FAILURE: 'DELETE_USER_FAILURE',
@@ -37,6 +40,23 @@ export function reducer(state = DEFAULT_STATE, action) {
         ...state,
         loading: false,
       } 
+    case types.CREATE_USER_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      }
+    case types.CREATE_USER_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        data: [...state.data, action.payload],
+      }
+    case types.CREATE_USER_FAILURE:
+      toast(<Failure message={action.payload} />)
+      return {
+        ...state,
+        loading: false,
+      } 
     case types.DELETE_USER_REQUEST:
       return {
         ...state,
@@ -60,6 +80,27 @@ export function reducer(state = DEFAULT_STATE, action) {
 }
 
 export const actions = {
+  create(createUserRequest) {
+    return function (dispatch, getState) {
+      dispatch({
+        type: types.CREATE_USER_REQUEST,
+      })
+      let { username, password, } = getState().user.data
+      api.createUser(username, password, createUserRequest)
+      .then(response => {
+        dispatch({
+          type: types.CREATE_USER_SUCCESS,
+          payload: response.data,
+        })
+      })
+      .catch(err => {
+        dispatch({
+          type: types.CREATE_USER_FAILURE,
+          payload: "Something went wrong",
+        })
+      })
+    }
+  },
   getUsers() {
     return function (dispatch, getState) {
       dispatch({

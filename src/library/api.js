@@ -16,6 +16,12 @@ export default {
       headers: { 'Authorization' : basicToken }
     })
   },
+  createUser: (username, password, createAccountRequest) => {
+    const basicToken = "Basic " + Base64.encode(username + ":" + password) 
+    return axios.post(hostName + '/admin/user', createAccountRequest, {
+      headers: { 'Authorization' : basicToken }
+    })
+  },
   updateUser: (accountId, username, newUsername, notificationIntervalInDays, password) => {
     const basicToken = "Basic " + Base64.encode(username + ":" + password) 
     const data = {

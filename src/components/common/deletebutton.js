@@ -17,7 +17,7 @@ class DeleteButton extends Component {
   render() {
     return (
       <Button outline color="danger" 
-                      className="delete-button"
+                      className="delete-button float-right"
                       onMouseEnter={this.handleMouseEnter}
                       onMouseLeave={this.handleMouseLeave} 
                       onClick={this.handleClick}>

@@ -10,6 +10,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   getUsers: () => dispatch(adminActions.getUsers()),
+  create: (createUserRequest) => dispatch(adminActions.create(createUserRequest)),
   delete: (accountId) => dispatch(adminActions.delete(accountId)),
 })
 
