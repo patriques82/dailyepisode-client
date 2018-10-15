@@ -6,7 +6,7 @@ export default (props) =>
   <Container>
     <Media className="image">
       { !_.isUndefined(props.homepage) ?
-       <a href={props.homepage}><Media src={props.url} alt="image" /></a> :
+       <a href={props.homepage} target="_blank"><Media src={props.url} alt="image" /></a> :
        <Media src={props.url} alt="image" />
       }
     </Media>

@@ -33,7 +33,7 @@ const withButtonSubscription = (Button) => (props) => {
           <Col xs="8">
             <Container className="main-content-container">
               <h3 className="name-header">
-                  <a className="name" href={homepage || "#"}>{ name || "No name" }</a>
+                  <a className="name" href={homepage || "#"} target="_blank">{ name || "No name" }</a>
                   <span className="airdate">({firstAirDate}</span> 
                   <span className="airdate separator">-</span>
                   <span className="airdate">{lastAirDate})</span>
