@@ -1,4 +1,3 @@
-import './home.css'
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Jumbotron, Container } from 'reactstrap'

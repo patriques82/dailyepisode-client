@@ -1,4 +1,3 @@
-import './search.css'
 import React, { Component } from 'react'
 import _ from 'lodash'
 import SearchForm from './searchform'

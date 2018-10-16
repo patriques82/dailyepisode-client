@@ -1,4 +1,3 @@
-import './header.css'
 import 'react-toastify/dist/ReactToastify.css'
 import React, { Component } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'

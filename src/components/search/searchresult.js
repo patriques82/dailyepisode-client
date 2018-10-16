@@ -1,4 +1,3 @@
-import './search.css'
 import React from 'react'
 import { 
   Container,

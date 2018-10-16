@@ -91,6 +91,7 @@ class Profile extends Component {
                 <Button outline color="danger" onClick={this.toggleModal}>
                   Delete
                 </Button>
+                {' '}
                 <Button outline color="secondary" type="submit">
                   Save
                 </Button>

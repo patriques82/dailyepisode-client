@@ -1,4 +1,3 @@
-import './admin.css'
 import React, { Component } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import { 
@@ -116,7 +115,7 @@ class Admin extends Component {
               { this.props.users.map((user, index) => (
                 <ListGroupItem key={index}>
                   <div className="clearfix">
-                    <ListGroupItemHeading className="float-left" tag={Link} to={`/subscriptions/${user.id}`}>{user.username}</ListGroupItemHeading>
+                    <ListGroupItemHeading className="user-name float-left" tag={Link} to={`/subscriptions/${user.id}`}>{user.username}</ListGroupItemHeading>
                     <DeleteButton delete={(e) => this.props.delete(user.id)}/>
                   </div>
                   <ListGroupItemText>

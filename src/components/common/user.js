@@ -11,7 +11,7 @@ const User = (props) => {
   let { id, username, email, nrOfSubscriptions, } = props.user
   return (
     <ListGroupItem>
-      <ListGroupItemHeading tag={Link} to={`/subscriptions/${id}`}>{username}</ListGroupItemHeading>
+      <ListGroupItemHeading className="user-name" tag={Link} to={`/subscriptions/${id}`}>{username}</ListGroupItemHeading>
       <ListGroupItemText>
         {email} <Badge color="primary">{nrOfSubscriptions}</Badge>
       </ListGroupItemText>
