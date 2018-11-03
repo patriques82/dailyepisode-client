@@ -10,7 +10,7 @@ const Home = (props) => {
           <FontAwesomeIcon icon="tv" className="tv-main-icon"/>
           <h1 className="display-3">Dailyepisode</h1>
           <p className="lead">
-            Keep track of all your tv shows.
+            Keep track of all your tv shows. Get updates when new seasons are released.
           </p>
         </Container>
       </Jumbotron>
