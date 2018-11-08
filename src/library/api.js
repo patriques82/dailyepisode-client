@@ -1,24 +1,22 @@
 import axios from 'axios';
 import { Base64 } from 'js-base64'
 
-const hostName = "http://localhost:8080"
-
 export default {
   getUsers: (username, password) => {
     const basicToken = "Basic " + Base64.encode(username + ":" + password) 
-    return axios.get(hostName + '/api/user', {
+    return axios.get('/api/user', {
       headers: { 'Authorization' : basicToken }
     })
   },
   getUser: (username, password) => {
     const basicToken = "Basic " + Base64.encode(username + ":" + password) 
-    return axios.get(hostName + '/api/user/me', {
+    return axios.get('/api/user/me', {
       headers: { 'Authorization' : basicToken }
     })
   },
   createUser: (username, password, createAccountRequest) => {
     const basicToken = "Basic " + Base64.encode(username + ":" + password) 
-    return axios.post(hostName + '/admin/user', createAccountRequest, {
+    return axios.post('/admin/user', createAccountRequest, {
       headers: { 'Authorization' : basicToken }
     })
   },
@@ -29,7 +27,7 @@ export default {
       username: newUsername,
       notificationIntervalInDays,
     }
-    return axios.put(hostName + '/api/user/update', data, {
+    return axios.put('/api/user/update', data, {
       headers: { 'Authorization': basicToken },
     })
   },
@@ -39,46 +37,46 @@ export default {
       accountId,
       newPassword,
     }
-    return axios.put(hostName + '/api/user/change-password', data, {
+    return axios.put('/api/user/change-password', data, {
       headers: { 'Authorization': basicToken },
     })
   },
   deleteUser: (username, password) => {
     const basicToken = "Basic " + Base64.encode(username + ":" + password) 
-    return axios.delete(hostName + '/api/user', {
+    return axios.delete('/api/user', {
       headers: { 'Authorization': basicToken },
     })
   },
   deleteOtherUser: (username, password, accountId) => {
     const basicToken = "Basic " + Base64.encode(username + ":" + password) 
-    return axios.delete(hostName + '/admin/user/' + accountId, {
+    return axios.delete('/admin/user/' + accountId, {
       headers: { 'Authorization': basicToken },
     })
   },
   getSubscriptions: (username, password) => {
     const basicToken = "Basic " + Base64.encode(username + ":" + password) 
-    return axios.get(hostName + '/api/subscription', {
+    return axios.get('/api/subscription', {
       headers: { 'Authorization' : basicToken }
     })
   },
   getUserSubscriptions: (username, password, userId) => {
     const basicToken = "Basic " + Base64.encode(username + ":" + password) 
-    return axios.get(hostName + '/api/subscription/' + userId, {
+    return axios.get('/api/subscription/' + userId, {
       headers: { 'Authorization' : basicToken }
     })
   },
   search: (searchTerm, page) => {
-    return axios.get(hostName + '/api/series/search/' + page + '?query=' + searchTerm)
+    return axios.get('/api/series/search/' + page + '?query=' + searchTerm)
   },
   subscribe: (username, password, subscriptionRequest) => {
     const basicToken = "Basic " + Base64.encode(username + ":" + password) 
-    return axios.post(hostName + '/api/subscription', subscriptionRequest, {
+    return axios.post('/api/subscription', subscriptionRequest, {
       headers: { 'Authorization' : basicToken }
     })
   },
   removeSubscription: (username, password, id) => {
     const basicToken = "Basic " + Base64.encode(username + ":" + password) 
-    return axios.delete(hostName + '/api/subscription/' + id, {
+    return axios.delete('/api/subscription/' + id, {
       headers: { 'Authorization' : basicToken }
     })
   }

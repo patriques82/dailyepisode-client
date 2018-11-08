@@ -146,7 +146,7 @@
 }
 
 .jumbotron {
-  background-color: #fff;
+  background-color: #fff !important;
 }
 
 .tv-main-icon {
