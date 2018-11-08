@@ -44,9 +44,6 @@ class Login extends Component {
         <Row>
           <Col xs="6" sm="4"></Col>
           <Col xs="6" sm="4">
-            <Alert color="danger" isOpen={ this.props.error !== null }>
-              { this.props.error }
-            </Alert> 
             <Form onSubmit={this.handleFormSubmit} >
               <FormGroup>
                 <Input type="text" 

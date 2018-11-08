@@ -5,7 +5,7 @@ import { Jumbotron, Container } from 'reactstrap'
 const Home = (props) => {
   return (
     <div>
-      <Jumbotron className="text-center">
+      <Jumbotron className="text-center white-background">
         <Container>
           <FontAwesomeIcon icon="tv" className="tv-main-icon"/>
           <h1 className="display-3">Dailyepisode</h1>
